@@ -22,26 +22,26 @@
     <ClCompile Include="src\Collision\Collision.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MapChip\MapChip.cpp" />
     <ClCompile Include="src\MyMath\MyMath.cpp" />
     <ClCompile Include="src\Scene\Play\PlayScene.cpp" />
     <ClCompile Include="src\Scene\Result\ResultScene.cpp" />
     <ClCompile Include="src\Scene\SceneManager.cpp" />
     <ClCompile Include="src\Scene\Select\SelectScene.cpp" />
     <ClCompile Include="src\Scene\Title\TitleScene.cpp" />
-    <ClCompile Include="src\Screen\Screen.cpp" />
     <ClCompile Include="src\Sound\SoundManager.cpp" />
     <ClCompile Include="src\VirtualButton\VirtualButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision\Collision.h" />
     <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\MapChip\MapChip.h" />
     <ClInclude Include="src\MyMath\MyMath.h" />
     <ClInclude Include="src\Scene\Play\PlayScene.h" />
     <ClInclude Include="src\Scene\Result\ResultScene.h" />
     <ClInclude Include="src\Scene\SceneManager.h" />
     <ClInclude Include="src\Scene\Select\SelectScene.h" />
     <ClInclude Include="src\Scene\Title\TitleScene.h" />
-    <ClInclude Include="src\Screen\Screen.h" />
     <ClInclude Include="src\Sound\SoundManager.h" />
     <ClInclude Include="src\VirtualButton\VirtualButton.h" />
   </ItemGroup>

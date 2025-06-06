@@ -2,6 +2,8 @@
 
 #include "DxLib.h"
 
+#include "../../MapChip/MapChip.h"
+
 const int PHASE_NUM = 3;	//ÉQÅ[ÉWÇÃêî
 
 class PlayScene
@@ -24,7 +26,8 @@ private:
 	int Step();
 	void Exit();
 
-	
+	MapChip maps;
+	CInput  input;
 
 public:
 	PlayScene();

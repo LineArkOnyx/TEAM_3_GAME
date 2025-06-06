@@ -46,8 +46,8 @@
     <Filter Include="ソース ファイル\button">
       <UniqueIdentifier>{5841d0dc-9621-40a1-b3bd-02208412eb63}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Screen">
-      <UniqueIdentifier>{4239118e-b6af-44d8-9c93-def3733d74cb}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\MapChip">
+      <UniqueIdentifier>{08bd8869-53df-4c1f-ad91-ce0245b22d09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,8 +84,8 @@
     <ClCompile Include="src\VirtualButton\VirtualButton.cpp">
       <Filter>ソース ファイル\button</Filter>
     </ClCompile>
-    <ClCompile Include="src\Screen\Screen.cpp">
-      <Filter>ソース ファイル\Screen</Filter>
+    <ClCompile Include="src\MapChip\MapChip.cpp">
+      <Filter>ソース ファイル\MapChip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,8 +119,8 @@
     <ClInclude Include="src\VirtualButton\VirtualButton.h">
       <Filter>ソース ファイル\button</Filter>
     </ClInclude>
-    <ClInclude Include="src\Screen\Screen.h">
-      <Filter>ソース ファイル\Screen</Filter>
+    <ClInclude Include="src\MapChip\MapChip.h">
+      <Filter>ソース ファイル\MapChip</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

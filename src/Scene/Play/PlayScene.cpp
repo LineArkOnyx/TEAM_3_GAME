@@ -2,15 +2,25 @@
 
 void PlayScene::Init()
 {
-	
+	maps.Init();
 }
 void PlayScene::Load()
 {
-	
+	maps.Load();
 }
 int PlayScene::Step()
 {
 	int Sequence = 0;
+
+	//ÉgÉâÉbÉvê∂ê¨(âº)
+	if (input.IsKeyPush(KEY_INPUT_LEFT)) {
+		maps.CreateTrap(0, 0, 100, 0, LEFT_MOVE);
+	}
+	if (input.IsKeyPush(KEY_INPUT_RIGHT)) {
+		maps.CreateTrap(0, 64, 100, 64, RIGHT_MOVE);
+	}
+
+	maps.Step();
 	
 	return Sequence;
 }
@@ -83,7 +93,7 @@ void PlayScene::Draw()
 	case STEP_SEQUENCE:
 		
 		DrawFormatString(0, 0, GetColor(255, 255, 0), "PLAY_STEP");
-		
+		maps.Draw();
 		break;
 
 	case EXIT_SEQUENCE:
