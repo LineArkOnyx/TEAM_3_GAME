@@ -49,6 +49,9 @@
     <Filter Include="ソース ファイル\MapChip">
       <UniqueIdentifier>{08bd8869-53df-4c1f-ad91-ce0245b22d09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Collision\Manager">
+      <UniqueIdentifier>{65a8d734-f82f-4311-8ab2-5f4ed7c0591c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -87,6 +90,9 @@
     <ClCompile Include="src\MapChip\MapChip.cpp">
       <Filter>ソース ファイル\MapChip</Filter>
     </ClCompile>
+    <ClCompile Include="src\Collision\Manager\CollisionManager.cpp">
+      <Filter>ソース ファイル\Collision\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Scene\SceneManager.h">
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="src\MapChip\MapChip.h">
       <Filter>ソース ファイル\MapChip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collision\Manager\CollisionManager.h">
+      <Filter>ソース ファイル\Collision\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

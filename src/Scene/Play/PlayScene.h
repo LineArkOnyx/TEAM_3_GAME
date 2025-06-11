@@ -2,6 +2,7 @@
 
 #include "DxLib.h"
 
+#include "../../Collision/Manager/CollisionManager.h"
 #include "../../MapChip/MapChip.h"
 
 const int PHASE_NUM = 3;	//ÉQÅ[ÉWÇÃêî
@@ -26,6 +27,7 @@ private:
 	int Step();
 	void Exit();
 
+	CollisonManager coll;
 	MapChip maps;
 	CInput  input;
 

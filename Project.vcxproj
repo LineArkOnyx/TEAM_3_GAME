@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Collision\Collision.cpp" />
+    <ClCompile Include="src\Collision\Manager\CollisionManager.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MapChip\MapChip.cpp" />
@@ -34,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Collision\Collision.h" />
+    <ClInclude Include="src\Collision\Manager\CollisionManager.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\MapChip\MapChip.h" />
     <ClInclude Include="src\MyMath\MyMath.h" />

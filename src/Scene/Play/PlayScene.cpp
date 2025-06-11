@@ -14,12 +14,13 @@ int PlayScene::Step()
 
 	//ÉgÉâÉbÉvê∂ê¨(âº)
 	if (input.IsKeyPush(KEY_INPUT_LEFT)) {
-		maps.CreateTrap(0, 0, 100, 0, LEFT_MOVE);
+		maps.CreateTrap(0, 0, 64, 0, DOWN_MOVE);
 	}
 	if (input.IsKeyPush(KEY_INPUT_RIGHT)) {
-		maps.CreateTrap(0, 64, 100, 64, RIGHT_MOVE);
+		maps.CreateTrap(0, 64, 64, 64, UP_MOVE);
 	}
 
+	coll.PlayerToMap(maps);
 	maps.Step();
 	
 	return Sequence;

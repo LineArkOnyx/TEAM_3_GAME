@@ -4,6 +4,7 @@ void MapChip::Init(){
 	memset(&handle, -1, sizeof(int));
 	memset(&fileData, -1, sizeof(int));
 
+	currentStage = STAGE_1;
 	i = 0;
 }
 
@@ -12,6 +13,8 @@ void MapChip::Load() {
 	LoadDivGraph(CHIP_IMAGE_PATH, CHIP_IMAGE_MAX_NUM,
 		sqrt(CHIP_IMAGE_MAX_NUM), sqrt(CHIP_IMAGE_MAX_NUM),
 		CHIP_SIZE, CHIP_SIZE, handle);
+
+	Read(currentStage);
 }
 
 void MapChip::Step() {
@@ -20,25 +23,6 @@ void MapChip::Step() {
 	if (input.IsKeyPush(KEY_INPUT_UP)) {
 		trap_vec[i].isTrigger = true;
 		i++;
-	}
-
-	//トラップ挙動
-	for (int trapNum = 0; trapNum < trap_vec.size(); trapNum++) {
-		if (trap_vec[trapNum].isTrigger) {
-			switch (trap_vec[trapNum].trap_type)
-			{
-			case LEFT_MOVE:
-				trap_vec[trapNum].trapX--;
-				break;
-			case RIGHT_MOVE:
-				trap_vec[trapNum].trapX++;
-				break;
-			case TRAP_NUM:
-				break;
-			default:
-				break;
-			}
-		}
 	}
 }
 
@@ -63,6 +47,37 @@ void MapChip::Draw() {
 
 void MapChip::Fin(){
 
+}
+
+void MapChip::Read(int stageId){
+	FILE* fp;
+
+	fopen_s(&fp, CsvFilePath[stageId], "r");
+
+	int mapIndexX = 0;
+	int mapIndexY = 0;
+
+	while (true) {
+		// 数値部分を読み込む
+		fscanf_s(fp, "%d", &fileData[mapIndexY][mapIndexX]);
+		mapIndexX++;
+
+		// 「,」を飛ばすために読み込みを実行
+		char chara = fgetc(fp);
+
+		// EOFの場合は読み込み終了
+		if (chara == EOF) {
+			break;
+		}
+
+		// 改行コードの場合は保存先を変更する
+		if (chara == '\n') {
+			mapIndexY++;
+			mapIndexX = 0;
+		}
+	}
+
+	fclose(fp);
 }
 
 void MapChip::CreateTrap(int trigger_x,int trigger_y,int trap_x,int trap_y, TRAP_TYPE type){
