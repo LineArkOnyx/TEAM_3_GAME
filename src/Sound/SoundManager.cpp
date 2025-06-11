@@ -1,6 +1,21 @@
 #include "SoundManager.h"
 
-int CSoundManager::m_iHndl[SOUNDID_NUM];
+CSoundManager* CSoundManager::m_Instance = NULL;
+
+CSoundManager* CSoundManager::GetInstance() {
+	if (m_Instance == NULL) {
+		m_Instance = new CSoundManager();
+	}
+
+	return m_Instance;
+}
+void CSoundManager::DeleteInstance() {
+	if (m_Instance) {
+		delete m_Instance;
+		m_Instance = NULL;
+	}
+}
+
 
 //-------------------------------------------------
 //                 コンストラクト
