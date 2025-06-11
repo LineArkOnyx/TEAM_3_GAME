@@ -23,7 +23,7 @@ void SceneManager::Loop()
 		if (cTitle.Loop() != 0) 
 		{
 			//セレクトシーンに移動する
-			m_eSceneID = SCENE_PLAY;
+			m_eSceneID = SCENE_SELECT;
 		}
 		break;
 	case SceneManager::SCENE_SELECT:
