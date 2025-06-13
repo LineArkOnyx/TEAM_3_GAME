@@ -7,18 +7,13 @@ void PlayScene::Init()
 void PlayScene::Load()
 {
 	maps.Load();
+	//トラップ生成(仮)
+	maps.CreatePITFALL(0, 0, 1, 1, 4, 23);
+	maps.CreateTrap(RIGHT_MOVE, 0, 0, 64, 0, 64, 64);
 }
 int PlayScene::Step()
 {
 	int Sequence = 0;
-
-	//トラップ生成(仮)
-	if (input.IsKeyPush(KEY_INPUT_LEFT)) {
-		maps.CreateTrap(0, 0, 64, 0, DOWN_MOVE);
-	}
-	if (input.IsKeyPush(KEY_INPUT_RIGHT)) {
-		maps.CreateTrap(0, 64, 64, 64, UP_MOVE);
-	}
 
 	coll.PlayerToMap(maps);
 	maps.Step();

@@ -18,10 +18,14 @@ constexpr int CHIP_Y_MAX = 23;
 constexpr int CHIP_SIZE  = 32;
 
 enum TRAP_TYPE {
-	LEFT_MOVE,
-	RIGHT_MOVE,
-	UP_MOVE,
-	DOWN_MOVE,
+	LEFT_MOVE,		 //左に動くだけトラップ
+	RIGHT_MOVE,		 //右に動くだけトラップ
+	UP_MOVE,		 //上に動くだけトラップ
+	DOWN_MOVE,		 //下に動くだけトラップ
+	LEFT_MOVE_SPINY, //左に動くとげ
+	RIGHT_MOVE_SPINY,//右に動くとげ
+
+	PITFALL,		//落とし穴
 
 	TRAP_NUM,
 };
@@ -33,8 +37,18 @@ enum STAGE_TYPE {
 	STAGE_NUM,
 };
 
+const char TRAP_IMAGE_PATH[TRAP_NUM][256] = {
+	"data/Map/map.png",
+	"data/Map/map.png",
+	"data/Map/map.png",
+	"data/Map/map.png",
+	"data/Map/map.png",
+	"data/Map/map.png",
+	"data/Map/map.png",
+};
+
 const char CHIP_IMAGE_PATH[256] = {
-	"data/Map/map.png"
+	"data/Map/MapChip.png"
 };
 
 //csvファイルパス
@@ -59,18 +73,24 @@ public:
 	//ステージの読み込み
 	void Read(int stageId);
 
-	//トラップ生成(トリガー座標,トラップ座標,どのトラップか)
-	void CreateTrap(int trigger_x, int trigger_y, int trap_x, int trap_y, TRAP_TYPE type);
+	//トラップ生成(トリガー座標,トラップ座標,チップ範囲,どのトラップか)
+	void CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int trap_x, int trap_y,int sizeX,int sizeY);
+	void CreatePITFALL(int trigger_x, int trigger_y, int pStepX = 1, int pStepY = 1, int stepX = 1, int stepY = 1);
 
 private:
 	//入力クラス
 	CInput input;
 
+	int trapHandle[TRAP_NUM];
+
 	//トラップ情報
 	struct TrapData {
-		bool isTrigger = false;	//トラップ発動フラグ
-		int triggerX, triggerY;	//発生源座標
-		int trapX, trapY;		//トラップ座標
+		bool isTrigger = false;				//トラップ発動フラグ
+		int triggerX, triggerY;				//発生源座標
+		int trapX, trapY;					//トラップ座標
+		int trapSizeX, trapSizeY;			//トラップサイズ
+		int preStepsAheadX, preStepsAheadY;	//どの範囲のチップを変化させるか
+		int stepsAheadX, stepsAheadY;		//どの範囲のチップを変化させるか
 
 		//トラップ種類
 		TRAP_TYPE trap_type;
@@ -111,9 +131,12 @@ public:
 	int i;
 
 	void SetStageClear(bool is) { stageClear = is; }
+	void SetFileData(int y, int x, int data) { fileData[y][x] = data; }
+
 	bool GetStageClear() { return stageClear; }
 	void SetCurrentStage(int is) { currentStage = is; }
 	bool GetCurrentStage() { return currentStage; }
+	int GetFileData(int y, int x) { return fileData[y][x]; }
 
 	TrapData& GetTrap(int id) { return trap_vec[id]; }
 	vector<TrapData> GetTrapVec() { return trap_vec; }
