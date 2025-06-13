@@ -13,8 +13,9 @@ enum tagSoundID {
 		SOUNDID_SE_JUMP,			// SE ジャンプ
 		SOUNDID_SE_GOAL,			// SE ゴール
 		SOUNDID_SE_HIT,				// SE 被弾(タヒ)
-		SOUNDID_SE_HYUN,			// SE ひゅーん
-		SOUNDID_SE_JAKIN,			// SE じゃきん
+		SOUNDID_SE_AORI_1,			// SE 煽り１
+		SOUNDID_SE_AORI_2,			// SE 煽り２
+		SOUNDID_SE_SCENECHANGE,		// SE シーン切り替え
 
 
 		SOUNDID_NUM
