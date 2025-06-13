@@ -52,6 +52,12 @@
     <Filter Include="ソース ファイル\Collision\Manager">
       <UniqueIdentifier>{65a8d734-f82f-4311-8ab2-5f4ed7c0591c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{f1ff0073-9fe4-47fa-ba48-1cd75fb82c1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{2ce32524-1011-48cd-b73b-9ec3c0dbcd40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -93,6 +99,12 @@
     <ClCompile Include="src\Collision\Manager\CollisionManager.cpp">
       <Filter>ソース ファイル\Collision\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="src\Effect\Effect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player\LevelDevilPlayer.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Scene\SceneManager.h">
@@ -130,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="src\Collision\Manager\CollisionManager.h">
       <Filter>ソース ファイル\Collision\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Effect\Effect.h">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player\LevelDevilPlayer.h">
+      <Filter>ソース ファイル\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

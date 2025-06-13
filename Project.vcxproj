@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="src\Collision\Collision.cpp" />
     <ClCompile Include="src\Collision\Manager\CollisionManager.cpp" />
+    <ClCompile Include="src\Effect\Effect.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MapChip\MapChip.cpp" />
     <ClCompile Include="src\MyMath\MyMath.cpp" />
+    <ClCompile Include="src\Player\LevelDevilPlayer.cpp" />
     <ClCompile Include="src\Scene\Play\PlayScene.cpp" />
     <ClCompile Include="src\Scene\Result\ResultScene.cpp" />
     <ClCompile Include="src\Scene\SceneManager.cpp" />
@@ -36,9 +38,11 @@
   <ItemGroup>
     <ClInclude Include="src\Collision\Collision.h" />
     <ClInclude Include="src\Collision\Manager\CollisionManager.h" />
+    <ClInclude Include="src\Effect\Effect.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\MapChip\MapChip.h" />
     <ClInclude Include="src\MyMath\MyMath.h" />
+    <ClInclude Include="src\Player\LevelDevilPlayer.h" />
     <ClInclude Include="src\Scene\Play\PlayScene.h" />
     <ClInclude Include="src\Scene\Result\ResultScene.h" />
     <ClInclude Include="src\Scene\SceneManager.h" />
