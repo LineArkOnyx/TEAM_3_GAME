@@ -7,17 +7,13 @@ using namespace std;
 //プレイヤーの画像を分割したときの最大数
 constexpr int IMG_MAX_NUM = 128;
 
-//横幅
-constexpr float PLAYER_WIDTH = 0.0f;
-//縦幅
-constexpr float PLAYER_HEIGHT = 0.0f;
-
 class Player
 {
 private:
 	enum tagPlayerState {
 		PLAYER_STATE_NORMAL,	//待機
-		PLAYER_STATE_RUN,		//走る
+		PLAYER_STATE_RIGHT_RUN,	//右に走る
+		PLAYER_STATE_LEFT_RUN,	//左に走る
 		PLAYER_STATE_JUMP		//ジャンプ
 	};
 
@@ -41,11 +37,16 @@ private:
 	float m_fYSpeed;
 
 	int m_iHndl[IMG_MAX_NUM];
+	int m_iImgNum;					//描画する画像の配列番号
+
+	int m_iFreamCnt;		//フレームカウント用変数
+	int m_iSecond;			//秒
 
 	bool m_bIsAlive;		//生存フラグ
 	bool m_bIsJump;			//ジャンプフラグ
 
 	tagPlayerState m_eState;
+	tagPlayerState m_eOldState;
 	tagDir m_eDir;
 
 public:
@@ -73,6 +74,16 @@ public:
 	void Move();		//移動
 	void Jump();		//ジャンプ
 
+	//アニメーション
+	void Animation();
+
+	//フレーム
+	void CntFream();
+	void ResetFream();
+	void InitFream();
+	void ResetSecond();
+
+public:
 	//取得関数
 	float GetXPos() { return m_fXPos; }		//X座標取得
 	float GetYPos() { return m_fYPos; }		//Y座標取得
