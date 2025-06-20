@@ -15,7 +15,7 @@ int PlayScene::Step()
 {
 	int Sequence = 0;
 
-	coll.PlayerToMap(maps);
+	//coll.PlayerToMap(maps);
 	maps.Step();
 	
 	return Sequence;

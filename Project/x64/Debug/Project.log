@@ -1,0 +1,8 @@
+﻿  Move.cpp
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\Move.h(4,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'Move' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Title/Move.cpp' をコンパイルしています)
+  
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Title/Move.cpp' をコンパイルしています)
+  
+  Project.vcxproj -> D:\Users\2309434\Desktop\TEAM_3_GAME\x64\Debug\Project.exe

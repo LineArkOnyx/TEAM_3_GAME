@@ -31,6 +31,7 @@
     <ClCompile Include="src\Scene\Result\ResultScene.cpp" />
     <ClCompile Include="src\Scene\SceneManager.cpp" />
     <ClCompile Include="src\Scene\Select\SelectScene.cpp" />
+    <ClCompile Include="src\Scene\Title\Move.cpp" />
     <ClCompile Include="src\Scene\Title\TitleScene.cpp" />
     <ClCompile Include="src\Sound\SoundManager.cpp" />
     <ClCompile Include="src\VirtualButton\VirtualButton.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="src\Scene\Result\ResultScene.h" />
     <ClInclude Include="src\Scene\SceneManager.h" />
     <ClInclude Include="src\Scene\Select\SelectScene.h" />
+    <ClInclude Include="src\Scene\Title\Move.h" />
     <ClInclude Include="src\Scene\Title\TitleScene.h" />
     <ClInclude Include="src\Sound\SoundManager.h" />
     <ClInclude Include="src\VirtualButton\VirtualButton.h" />

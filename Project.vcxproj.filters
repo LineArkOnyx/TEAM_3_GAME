@@ -58,6 +58,9 @@
     <Filter Include="ソース ファイル\Player">
       <UniqueIdentifier>{2ce32524-1011-48cd-b73b-9ec3c0dbcd40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scene\Title\Move">
+      <UniqueIdentifier>{9d4cd9d0-1a4b-49d1-9575-69b25fb43373}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -105,6 +108,9 @@
     <ClCompile Include="src\Collision\Collision.cpp">
       <Filter>ソース ファイル\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scene\Title\Move.cpp">
+      <Filter>ソース ファイル\Scene\Title\Move</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Scene\SceneManager.h">
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="src\Collision\Collision.h">
       <Filter>ソース ファイル\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Title\Move.h">
+      <Filter>ソース ファイル\Scene\Title\Move</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
