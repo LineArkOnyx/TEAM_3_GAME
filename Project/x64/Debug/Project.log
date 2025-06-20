@@ -1,0 +1,71 @@
+﻿  Collision.cpp
+  CollisionManager.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Collision/Manager/CollisionManager.cpp' をコンパイルしています)
+  
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(12,72): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(12,58): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(12,54): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(12,32): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Effect.cpp
+  Input.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Input/Input.cpp' をコンパイルしています)
+  
+  Main.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Main.cpp' をコンパイルしています)
+  
+  MapChip.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/MapChip/MapChip.cpp' をコンパイルしています)
+  
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\MapChip\MapChip.cpp(14,33): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\MapChip\MapChip.cpp(14,7): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+  MyMath.cpp
+  LevelDevilPlayer.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Player\LevelDevilPlayer.cpp(82,50): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Player\LevelDevilPlayer.cpp(82,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Player\LevelDevilPlayer.cpp(82,19): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Player\LevelDevilPlayer.cpp(82,10): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  PlayScene.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Play/PlayScene.cpp' をコンパイルしています)
+  
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Scene\Play\PlayScene.cpp(18,7): error C2660: 'CollisonManager::PlayerToMap': 関数に 1 個の引数を指定できません。
+      D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Collision\Manager\CollisionManager.h(13,7):
+      'CollisonManager::PlayerToMap' の宣言を確認してください
+      D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Scene\Play\PlayScene.cpp(18,7):
+      引数リスト '(MapChip)' を一致させようとしているとき
+  
+  ResultScene.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Result/ResultScene.cpp' をコンパイルしています)
+  
+  SceneManager.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
+  
+  SelectScene.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Select/SelectScene.cpp' をコンパイルしています)
+  
+  TitleScene.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Title/TitleScene.cpp' をコンパイルしています)
+  
+  SoundManager.cpp
+  VirtualButton.cpp
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/VirtualButton/VirtualButton.cpp' をコンパイルしています)
+  
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(74,113): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(74,71): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(74,41): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(74,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(77,149): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(77,102): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(77,56): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(77,32): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309423\Documents\GitHub\TEAM_3_GAME\src\VirtualButton\VirtualButton.cpp(88,42): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  コードを生成中...
