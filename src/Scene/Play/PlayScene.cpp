@@ -3,20 +3,27 @@
 void PlayScene::Init()
 {
 	maps.Init();
+
+	player.Init();
 }
 void PlayScene::Load()
 {
 	maps.Load();
 	//ÉgÉâÉbÉvê∂ê¨(âº)
-	maps.CreatePITFALL(0, 0, 1, 1, 4, 23);
-	maps.CreateTrap(RIGHT_MOVE, 0, 0, 64, 0, 64, 64);
+	maps.CreatePITFALL(600, 720 - 64, 64, 64, 18, 1, 23, 23);
+	maps.CreateTrap(RIGHT_MOVE, 300, 720 - 64, 64, 64, 64, 0, 64, 64);
+
+	player.Load();
 }
 int PlayScene::Step()
 {
 	int Sequence = 0;
 
-	coll.PlayerToMap(maps);
+	player.Step();
+	coll.PlayerToMap(player, maps);
 	maps.Step();
+
+	player.Update();
 	
 	return Sequence;
 }
@@ -90,6 +97,7 @@ void PlayScene::Draw()
 		
 		DrawFormatString(0, 0, GetColor(255, 255, 0), "PLAY_STEP");
 		maps.Draw();
+		player.Draw();
 		break;
 
 	case EXIT_SEQUENCE:

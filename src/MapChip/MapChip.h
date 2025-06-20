@@ -74,8 +74,8 @@ public:
 	void Read(int stageId);
 
 	//トラップ生成(トリガー座標,トラップ座標,チップ範囲,どのトラップか)
-	void CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int trap_x, int trap_y,int sizeX,int sizeY);
-	void CreatePITFALL(int trigger_x, int trigger_y, int pStepX = 1, int pStepY = 1, int stepX = 1, int stepY = 1);
+	void CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int trap_x, int trap_y, int sizeX, int sizeY);
+	void CreatePITFALL(int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int pStepX = 1, int pStepY = 1, int stepX = 1, int stepY = 1);
 
 private:
 	//入力クラス
@@ -87,6 +87,7 @@ private:
 	struct TrapData {
 		bool isTrigger = false;				//トラップ発動フラグ
 		int triggerX, triggerY;				//発生源座標
+		int triggerXSize, triggerYSize;		//発生源座標
 		int trapX, trapY;					//トラップ座標
 		int trapSizeX, trapSizeY;			//トラップサイズ
 		int preStepsAheadX, preStepsAheadY;	//どの範囲のチップを変化させるか
@@ -107,6 +108,11 @@ private:
 		void MoveTrapY(int y) { trapY += y; }
 
 		void SetTrapType(TRAP_TYPE type) { trap_type = type; }
+
+		void GetMoveDir(bool* _DirArray)
+		{
+
+		}
 	};
 
 	//トラップ情報ベクター

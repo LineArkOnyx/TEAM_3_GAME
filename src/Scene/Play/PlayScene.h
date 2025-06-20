@@ -4,6 +4,7 @@
 
 #include "../../Collision/Manager/CollisionManager.h"
 #include "../../MapChip/MapChip.h"
+#include "../../Player/LevelDevilPlayer.h"
 
 const int PHASE_NUM = 3;	//ÉQÅ[ÉWÇÃêî
 
@@ -29,6 +30,7 @@ private:
 
 	CollisonManager coll;
 	MapChip maps;
+	Player  player;
 	CInput  input;
 
 public:
