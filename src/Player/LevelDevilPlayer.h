@@ -7,6 +7,11 @@ using namespace std;
 //ƒvƒŒƒCƒ„[‚Ì‰æ‘œ‚ğ•ªŠ„‚µ‚½‚Æ‚«‚ÌÅ‘å”
 constexpr int IMG_MAX_NUM = 128;
 
+//‰¡•
+constexpr float PLAYER_WIDTH = 0.0f;
+//c•
+constexpr float PLAYER_HEIGHT = 0.0f;
+
 class Player
 {
 private:

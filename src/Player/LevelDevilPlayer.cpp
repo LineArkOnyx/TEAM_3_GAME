@@ -2,11 +2,6 @@
 
 
 //定義
-//横幅
-constexpr float PLAYER_WIDTH = 0.0f;
-//縦幅
-constexpr float PLAYER_HEIGHT = 0.0f;
-
 //プレイヤーのスピード
 constexpr float PLAYER_SPEED = 3.0f;
 constexpr float PLAYER_JUMP_SPEED = 8.0f;

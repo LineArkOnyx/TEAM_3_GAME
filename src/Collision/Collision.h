@@ -10,7 +10,7 @@
 //int型
 bool IsHitRect(int Ax, int Ay, int Aw, int Ah, int Bx, int By, int Bw, int Bh);
 //float型
-bool IsHitRect(float Ax, float Ay, float Aw, float Ah, float Bx, float By, float Bw, float Bh);
+//bool IsHitRect(float Ax, float Ay, float Aw, float Ah, float Bx, float By, float Bw, float Bh);
 
 //3Dの当たり判定
 //第一引数,オブジェクト1の座標、第二引数,オブジェクト1の幅・高さ・奥行き
