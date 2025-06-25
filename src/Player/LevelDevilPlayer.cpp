@@ -27,8 +27,8 @@ constexpr int IMG_Y_SIZE = 32;
 
 Player::Player()
 {
-	m_fXPos = 0.0f;
-	m_fYPos = 0.0f;
+	m_fXPos = 64.0f;
+	m_fYPos = 64.0f;
 	m_fNextXPos = 0.0f;
 	m_fNextYPos = 0.0f;
 	m_fRot = 0.0f;

@@ -22,11 +22,13 @@ void MapChip::Load() {
 }
 
 void MapChip::Step() {
-
-	//仮
-	if (input.IsKeyPush(KEY_INPUT_UP)) {
-		trap_vec[i].isTrigger = true;
-		i++;
+	if (input.IsKeyKeep(KEY_INPUT_G)) {
+		for (int MapChipYIndex = 0; MapChipYIndex < CHIP_Y_MAX; MapChipYIndex++) {
+			DrawLine(0, MapChipYIndex * 32, 1280, MapChipYIndex * 32, GetColor(255, 0, 0));
+			for (int MapChipXIndex = 0; MapChipXIndex < CHIP_X_MAX; MapChipXIndex++) {
+				DrawLine(MapChipXIndex * 32, 0, MapChipXIndex * 32, 720, GetColor(255, 0, 0));
+			}
+		}
 	}
 }
 
@@ -46,21 +48,25 @@ void MapChip::Draw() {
 		case LEFT_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
 				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[LEFT_MOVE], true);
+			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case RIGHT_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
 				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[RIGHT_MOVE], true);
+			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case UP_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
 				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[UP_MOVE], true);
+			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case DOWN_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
 				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[DOWN_MOVE], true);
+			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case PITFALL:
-
+			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 0, 0), false);
 			break;
 		case TRAP_NUM:
 			break;
@@ -106,7 +112,7 @@ void MapChip::Read(int stageId){
 	fclose(fp);
 }
 
-void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int trap_x, int trap_y, int sizeX, int sizeY){
+void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int trap_x, int trap_y, int sizeX, int sizeY){
 	TrapData traps;
 
 	traps.isTrigger = false;		//トラップ発生
@@ -114,6 +120,8 @@ void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int trap_
 	//座標代入コーナー
 	traps.triggerX = trigger_x;
 	traps.triggerY = trigger_y;
+	traps.triggerXSize = triggerSizeX;
+	traps.triggerYSize = triggerSizeY;
 	traps.trapX = trap_x;
 	traps.trapY = trap_y;
 	traps.trapSizeX = sizeX;
@@ -126,7 +134,7 @@ void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int trap_
 	trap_vec.push_back(traps);
 }
 
-void MapChip::CreatePITFALL(int trigger_x, int trigger_y, int pStepX, int pStepY, int stepX, int stepY){
+void MapChip::CreatePITFALL(int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int pStepX, int pStepY, int stepX, int stepY){
 	TrapData traps;
 
 	traps.isTrigger = false;		//トラップ発生
@@ -134,6 +142,8 @@ void MapChip::CreatePITFALL(int trigger_x, int trigger_y, int pStepX, int pStepY
 	//座標代入コーナー
 	traps.triggerX = trigger_x;
 	traps.triggerY = trigger_y;
+	traps.triggerXSize = triggerSizeX;
+	traps.triggerYSize = triggerSizeY;
 	traps.preStepsAheadX = pStepX;
 	traps.preStepsAheadY = pStepY;
 	traps.stepsAheadX = stepX;
