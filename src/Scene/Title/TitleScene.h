@@ -3,6 +3,9 @@
 #include "DxLib.h"
 #include "../../Input/Input.h"
 #include "../../Collision/Collision.h"
+#include "../../Collision/Manager/CollisionManager.h"
+#include "../../MapChip/MapChip.h"
+#include "../../Player/LevelDevilPlayer.h"
 class TitleScene 
 {
 private:

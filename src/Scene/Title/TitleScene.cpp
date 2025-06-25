@@ -1,25 +1,30 @@
 #include "TitleScene.h"
 
 //定義
-const char TITLE_START_PATH[] = { "data/Title/スタート.png" };
+const char TITLE_START_PATH[] = { "data/Title/Goal.png" };
 const float MOUSEPOINT_RADIUS = 3.0f;
 const int STARTBUTTON_WIDHT = 250;
 const int STARTBUTTON_HEIGHT = 150;
 
 void TitleScene::Init()
 {
+	//↓これが選択の当たり判定
 	m_fStartPosX = 200.0f;
-	m_fStartPosY = 500.0f;
+	m_fStartPosY = 200.0f;
+
+
 	m_iStartHndl = -1;
 	TitleHndl = -1;
-	Exlate = 100.0;
+	//ズームの値
+	Exlate = 15.0;
+
 	buttonReach = false;
 }
 void TitleScene::Load()
 {
 	if (m_iStartHndl == -1) {
 		m_iStartHndl = LoadGraph(TITLE_START_PATH);
-		TitleHndl = LoadGraph("data/Title/Title.png");
+		TitleHndl = LoadGraph("data/background.png");
 	}
 }
 int TitleScene::Step()
@@ -32,9 +37,11 @@ int TitleScene::Step()
 
 	DrawFormatString(100, 120, GetColor(255, 0, 0), "%d", MousePosX);
 	DrawFormatString(100, 140, GetColor(255, 0, 0), "%d", MousePosY);
-	if (Exlate > 1.0) {
-		Exlate -= 0.5;
-	}
+	
+	//これが画像ズームしながら登場する処理
+	//if (Exlate > 1.0) {
+	//	Exlate -= 0.5;
+	//}
 	if (IsHitSphereAndRectCollision((float)MousePosX, (float)MousePosY, MOUSEPOINT_RADIUS, m_fStartPosX, m_fStartPosY, STARTBUTTON_WIDHT, STARTBUTTON_HEIGHT))
 	{
 		buttonReach = true;
@@ -112,10 +119,16 @@ void TitleScene::Draw()
 		break;
 
 	case STEP_SEQUENCE:
+		//これが画像だと思う
 		DrawRotaGraph(640, 360, Exlate, 0, TitleHndl, true);
+
 		DrawFormatString(0, 0, GetColor(255, 255, 0), "TITLE_STEP");
-		/*DrawGraph(m_fStartPosX, m_fStartPosY, m_iStartHndl, true);*/
-		DrawBox(200, 500, 450, 650, GetColor(255, 0, 0), buttonReach);
+		
+		//これがマウスが近くにあるときの当たり判定　画像
+		DrawGraph(m_fStartPosX, m_fStartPosY, m_iStartHndl, true);
+		
+		//これがマウスが近くにあるときの当たり判定　	色
+		DrawBox(m_fStartPosX, m_fStartPosY + 5, 53, 53, GetColor(255, 0, 0), buttonReach);
 
 		break;
 
