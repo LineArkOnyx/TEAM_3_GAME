@@ -5,6 +5,8 @@ void PlayScene::Init()
 	maps.Init();
 
 	player.Init();
+
+	Effectmanager.Init();
 }
 void PlayScene::Load()
 {
@@ -14,6 +16,8 @@ void PlayScene::Load()
 	maps.CreateTrap(RIGHT_MOVE, 300, 720 - 64, 64, 64, 64, 720 - 64, 64, 64);
 
 	player.Load();
+
+	Effectmanager.Load();
 }
 int PlayScene::Step()
 {
@@ -25,13 +29,16 @@ int PlayScene::Step()
 	maps.Step();
 
 	player.Update();
+
+	Effectmanager.Step();
+	Effectmanager.Update();
 	
 	return Sequence;
 }
 void PlayScene::Exit()
 {
 	
-	
+	Effectmanager.Fin();
 }
 
 PlayScene::PlayScene()
@@ -99,6 +106,8 @@ void PlayScene::Draw()
 		DrawFormatString(0, 0, GetColor(255, 255, 0), "PLAY_STEP");
 		maps.Draw();
 		player.Draw();
+
+		Effectmanager.Draw();
 		break;
 
 	case EXIT_SEQUENCE:

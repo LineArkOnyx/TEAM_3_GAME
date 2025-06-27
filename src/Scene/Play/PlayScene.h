@@ -6,6 +6,9 @@
 #include "../../MapChip/MapChip.h"
 #include "../../Player/LevelDevilPlayer.h"
 
+
+#include "../../Effect/Effect.h"
+
 const int PHASE_NUM = 3;	//ÉQÅ[ÉWÇÃêî
 
 class PlayScene
@@ -32,6 +35,8 @@ private:
 	MapChip maps;
 	Player  player;
 	CInput  input;
+
+	EffectManager Effectmanager;
 
 public:
 	PlayScene();
