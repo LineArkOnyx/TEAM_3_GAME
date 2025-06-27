@@ -77,18 +77,13 @@ public:
 	void CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int trap_x, int trap_y, int sizeX, int sizeY);
 	void CreatePITFALL(int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int pStepX = 1, int pStepY = 1, int stepX = 1, int stepY = 1);
 
-private:
-	//入力クラス
-	CInput input;
-
-	int trapHandle[TRAP_NUM];
-
 	//トラップ情報
 	struct TrapData {
 		bool isTrigger = false;				//トラップ発動フラグ
 		int triggerX, triggerY;				//発生源座標
 		int triggerXSize, triggerYSize;		//発生源座標
 		int trapX, trapY;					//トラップ座標
+		int trapNextX, trapNextY;			//トラップ座標
 		int trapSizeX, trapSizeY;			//トラップサイズ
 		int preStepsAheadX, preStepsAheadY;	//どの範囲のチップを変化させるか
 		int stepsAheadX, stepsAheadY;		//どの範囲のチップを変化させるか
@@ -104,16 +99,37 @@ private:
 
 		void MoveTriX(int x) { triggerX += x; }
 		void MoveTriY(int y) { triggerY += y; }
-		void MoveTrapX(int x) { trapX += x; }
-		void MoveTrapY(int y) { trapY += y; }
+		void MoveTrapX(int x) { trapNextX += x; }
+		void MoveTrapY(int y) { trapNextY += y; }
 
 		void SetTrapType(TRAP_TYPE type) { trap_type = type; }
 
 		void GetMoveDir(bool* _DirArray)
 		{
-
+			//右方向のチェック(進んでいる)
+			if (trapNextX > trapX) {
+				_DirArray[3] = true;
+			}
+			//左方向チェック　
+			if (trapNextX < trapX) {
+				_DirArray[2] = true;
+			}
+			//下方向チェック
+			if (trapNextY > trapY) {
+				_DirArray[1] = true;
+			}
+			//上方向チェック
+			if (trapNextY < trapY) {
+				_DirArray[0] = true;
+			}
 		}
 	};
+
+private:
+	//入力クラス
+	CInput input;
+
+	int trapHandle[TRAP_NUM];
 
 	//トラップ情報ベクター
 	vector<TrapData> trap_vec;
@@ -143,6 +159,8 @@ public:
 	void SetCurrentStage(int is) { currentStage = is; }
 	bool GetCurrentStage() { return currentStage; }
 	int GetFileData(int y, int x) { return fileData[y][x]; }
+
+	void UpDate();
 
 	TrapData& GetTrap(int id) { return trap_vec[id]; }
 	vector<TrapData> GetTrapVec() { return trap_vec; }
