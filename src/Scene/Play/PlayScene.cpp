@@ -19,12 +19,11 @@ int PlayScene::Step()
 {
 	int Sequence = 0;
 
-<<<<<<< HEAD
 	//coll.PlayerToMap(maps);
-=======
+
 	player.Step();
 	coll.PlayerToMap(player, maps);
->>>>>>> 28283b4a6a3c47b2f1d6f74a8a91ad705a7d69fa
+
 	maps.Step();
 
 	player.Update();
