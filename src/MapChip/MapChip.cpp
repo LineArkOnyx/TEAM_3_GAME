@@ -122,8 +122,8 @@ void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int trigg
 	traps.triggerY = trigger_y;
 	traps.triggerXSize = triggerSizeX;
 	traps.triggerYSize = triggerSizeY;
-	traps.trapX = trap_x;
-	traps.trapY = trap_y;
+	traps.trapNextX = traps.trapX = trap_x;
+	traps.trapNextY = traps.trapY = trap_y;
 	traps.trapSizeX = sizeX;
 	traps.trapSizeY = sizeY;
 
@@ -154,4 +154,12 @@ void MapChip::CreatePITFALL(int trigger_x, int trigger_y, int triggerSizeX, int 
 
 	//ベクターに挿入
 	trap_vec.push_back(traps);
+}
+
+void MapChip::UpDate() {
+	for (int trapIndex = 0; trapIndex < trap_vec.size(); trapIndex++) {
+		if (trap_vec[trapIndex].trap_type == PITFALL)continue;
+		trap_vec[trapIndex].trapX = trap_vec[trapIndex].trapNextX;
+		trap_vec[trapIndex].trapY = trap_vec[trapIndex].trapNextY;
+	}
 }
