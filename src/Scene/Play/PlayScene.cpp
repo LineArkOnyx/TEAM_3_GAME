@@ -13,7 +13,7 @@ void PlayScene::Load()
 	maps.Load();
 	//ÉgÉâÉbÉvê∂ê¨(âº)
 	maps.CreatePITFALL(600, 720 - 64, 64, 64, 18, 1, 23, 23);
-	maps.CreateTrap(RIGHT_MOVE, 300, 720 - 64, 64, 64, 64, 720 - 64, 64, 64);
+	maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 720, 1000, 64);
 
 	player.Load();
 

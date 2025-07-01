@@ -102,6 +102,9 @@ void Player::Step()
 
 void Player::Draw()
 {
+	//¶‘¶ƒtƒ‰ƒO‚ªOFF
+	if (!m_bIsAlive) { return; }
+
 	DrawBox(m_fXPos, m_fYPos, m_fXPos + 32, m_fYPos + 32, GetColor(255, 0, 0), true);
 }
 

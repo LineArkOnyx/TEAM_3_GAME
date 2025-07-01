@@ -1,33 +1,11 @@
 #include "CollisionManager.h"
 
-bool IsPlayerOnBlock(Player& player, MapChip& block) {
-	for (int trapIndex = 0; trapIndex < block.GetTrapVec().size(); trapIndex++) {
-		MapChip::TrapData maps = block.GetTrap(trapIndex);
-		if (maps.trap_type == PITFALL)continue;
-		// プレイヤーの足元Yとブロックの上面Yが一致している
-		float playerBottom = player.GetYPos() + player.GetHeight();
-		float blockTop = maps.trapY;
-
-		// Yの誤差が小さい（±数ピクセル）＝乗ってるとみなす
-		const float tolerance = 4.0f;
-
-		bool verticalMatch = fabs(playerBottom - blockTop) < tolerance;
-
-		// 横方向に当たっている（範囲が重なっている）
-		bool horizontalOverlap =
-			player.GetXPos() + player.GetWidth() > maps.trapSizeX + 2 &&
-			player.GetXPos() < maps.trapX + maps.trapSizeX + 2;
-
-		return verticalMatch && horizontalOverlap;
-	}
-}
-
 void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 
 	//プレイヤーとマップの当たり判定
 	for (int mapIndexY = 0; mapIndexY < CHIP_Y_MAX; mapIndexY++) {
 		for (int mapIndexX = 0; mapIndexX < CHIP_X_MAX; mapIndexX++) {
-			if (map.GetFileData(mapIndexY, mapIndexX) == -1)continue;
+			if (map.GetFileData(mapIndexY, mapIndexX) == -1 || map.GetFileData(mapIndexY, mapIndexX) == 1 || map.GetFileData(mapIndexY, mapIndexX) == 2)continue;
 			bool dir[4] = { false };
 			player.GetMoveDir(dir);
 
@@ -47,10 +25,9 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 			}
 		}
 	}
-
 	for (int mapIndexY = 0; mapIndexY < CHIP_Y_MAX; mapIndexY++) {
 		for (int mapIndexX = 0; mapIndexX < CHIP_X_MAX; mapIndexX++) {
-			if (map.GetFileData(mapIndexY, mapIndexX) == -1)continue;
+			if (map.GetFileData(mapIndexY, mapIndexX) == -1 || map.GetFileData(mapIndexY, mapIndexX) == 1 || map.GetFileData(mapIndexY, mapIndexX) == 2)continue;
 			bool dir[4] = { false };
 			player.GetMoveDir(dir);
 
@@ -70,43 +47,83 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 		}
 	}
 
-	//壁との当たり判定
+	//とげの処理
+	for (int mapIndexY = 0; mapIndexY < CHIP_Y_MAX; mapIndexY++) {
+		for (int mapIndexX = 0; mapIndexX < CHIP_X_MAX; mapIndexX++) {
+			int mapX = mapIndexX * CHIP_SIZE;
+			int mapY = mapIndexY * CHIP_SIZE;
+			if (map.GetFileData(mapIndexY, mapIndexX) == 1 || map.GetFileData(mapIndexY, mapIndexX) == 2) {
+				if (IsHitRect(player.GetNextXPos(), player.GetNextYPos(), player.GetWidth(), player.GetHeight(), mapX, mapY, CHIP_SIZE, CHIP_SIZE)) {
+					player.SetAliveFlg(false);
+				}
+			}
+		}
+	}
+
+	//動く壁====================================================================================================================================================================================================================
+	
+	//壁が動いている場合
 	for (int trapIndex = 0; trapIndex < map.GetTrapVec().size(); trapIndex++) {
 		MapChip::TrapData maps = map.GetTrap(trapIndex);
+		//落とし穴は関係ない
 		if (maps.trap_type == PITFALL)continue;
+
 		bool dir[4] = { false };
 		maps.GetMoveDir(dir);
-		if (IsHitRect(player.GetXPos(), player.GetYPos(), player.GetWidth(), player.GetHeight(), maps.trapX, maps.trapY, maps.trapSizeX, maps.trapSizeY)) {
+
+		bool pdir[4] = { false };
+		player.GetMoveDir(pdir);
+
+		if (IsHitRect(player.GetXPos(), player.GetNextYPos(), player.GetWidth(), player.GetHeight(), maps.trapX, maps.trapY, maps.trapSizeX, maps.trapSizeY)) {
 			if (dir[0]) { // ブロックが上に動いている
 				float overlap = player.GetNextYPos() + player.GetHeight() - maps.trapNextY;
 				player.SetNextYPos(player.GetNextYPos() - overlap);
 				player.SetJumpFlag(false);
-				/*player.SetYSpeed(0.0f);*/
 			}
 			else if (dir[1]) { // 下
 				float overlap = maps.trapNextY + maps.trapSizeY - player.GetNextYPos();
 				player.SetNextYPos(player.GetNextYPos() + overlap);
 			}
+
+			//ブロック動いてなければ
+			if (dir[0] || dir[1])break;
+			if (pdir[1]) {
+				float overlap = player.GetNextYPos() + player.GetHeight() - maps.trapY;
+				player.SetNextYPos((float)(player.GetNextYPos() - overlap));
+				player.SetJumpFlag(false);
+
+				//もし左にブロックが動いていれば
+				if (dir[2]) {
+					player.SetNextXPos(player.GetNextXPos() - 1);
+				}
+				//もし右にブロックが動いていれば
+				if (dir[3]) {
+					player.SetNextXPos(player.GetNextXPos() + 1);
+				}
+
+			}
+			if (dir[0] || dir[1] || dir[2] || dir[3])break;
+			if (pdir[0]) {
+				float over = maps.trapY + maps.trapSizeY - player.GetNextYPos();
+				player.SetNextYPos((float)(player.GetNextYPos() + over));
+			}
+			
 		}
-		//if (IsPlayerOnBlock(player, map)) {
-		//	bool dir[4] = { false };
-		//	maps.GetMoveDir(dir);
-		//	if (dir[2]) { // 左に動いてる
-		//		player.SetXPos(player.GetXPos());
-		//	}
-		//	else if (dir[3]) { // 右に動いてる
-		//		player.SetXPos(player.GetXPos());
-		//	}
-		//}
 	}
-	//壁との当たり判定
+	//壁が動いている場合
 	for (int trapIndex = 0; trapIndex < map.GetTrapVec().size(); trapIndex++) {
 		MapChip::TrapData maps = map.GetTrap(trapIndex);
+		//落とし穴は関係ない
 		if (maps.trap_type == PITFALL)continue;
+
 		bool dir[4] = { false };
 		maps.GetMoveDir(dir);
-		if (IsHitRect(player.GetXPos(), player.GetYPos(), player.GetWidth(), player.GetHeight(), maps.trapX, maps.trapY, maps.trapSizeX, maps.trapSizeY)) {
-			if (dir[2]) { // 左
+
+		bool pdir[4] = { false };
+		player.GetMoveDir(pdir);
+
+		if (IsHitRect(player.GetNextXPos(), player.GetNextYPos(), player.GetWidth(), player.GetHeight(), maps.trapX, maps.trapY, maps.trapSizeX, maps.trapSizeY)) {
+			if (dir[2]) { //左に動いている
 				float overlap = player.GetNextXPos() + player.GetWidth() - maps.trapNextX;
 				player.SetNextXPos(player.GetNextXPos() - overlap);
 			}
@@ -114,12 +131,24 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 				float overlap = maps.trapNextX + maps.trapSizeX - player.GetNextXPos();
 				player.SetNextXPos(player.GetNextXPos() + overlap);
 			}
+
+			if (pdir[2]) {
+				float over = maps.trapX + maps.trapSizeX - player.GetNextXPos();
+				player.SetNextXPos((float)(player.GetNextXPos() + over));
+			}
+			if (pdir[3]) {
+				float over = player.GetNextXPos() + player.GetWidth() - maps.trapX;
+				player.SetNextXPos((float)(player.GetNextXPos() - over));
+			}
 		}
 	}
 
 	//座標更新
 	map.UpDate();
+	//=========================================================================================================================================================================================================================
 
+
+	//トリガー=================================================================================================
 	for (int trapIndex = 0; trapIndex < map.GetTrapVec().size(); trapIndex++) {
 		//トリガーとの当たり判定
 		if (IsHitRect(player.GetXPos(), player.GetYPos(), player.GetWidth(), player.GetHeight(), map.GetTrap(trapIndex).triggerX, map.GetTrap(trapIndex).triggerY, map.GetTrap(trapIndex).triggerXSize, map.GetTrap(trapIndex).triggerYSize)) {

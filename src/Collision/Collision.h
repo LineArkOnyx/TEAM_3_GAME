@@ -9,6 +9,10 @@
 //IsHitRectのプロトタイプ宣言
 //int型
 bool IsHitRect(int Ax, int Ay, int Aw, int Ah, int Bx, int By, int Bw, int Bh);
+
+//上だけ判定
+bool IsHitUpper(int Ax, int Ay, int Aw, int Ah, int Bx, int By, int Bw);
+
 //float型
 //bool IsHitRect(float Ax, float Ay, float Aw, float Ah, float Bx, float By, float Bw, float Bh);
 

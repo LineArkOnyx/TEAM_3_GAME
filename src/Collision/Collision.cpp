@@ -15,6 +15,13 @@ bool IsHitRect(int Ax, int Ay, int Aw, int Ah, int Bx, int By, int Bw, int Bh) {
 	return false;
 }
 
+bool IsHitUpper(int Ax, int Ay, int Aw, int Ah, int Bx, int By, int Bw){
+	if (Bx < Ax + Aw && Bx + Bw > Ax && By < Ay + Ah) {
+		return true;
+	}
+	return false;
+}
+
 //IsHitCircle‚Ì’è‹`
 bool IsHitCircle(int aX, int aY, int aR, int bX, int bY, int bR)
 {
