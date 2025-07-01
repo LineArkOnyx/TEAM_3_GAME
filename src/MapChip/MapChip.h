@@ -74,7 +74,7 @@ public:
 	void Read(int stageId);
 
 	//トラップ生成(トリガー座標,トラップ座標,チップ範囲,どのトラップか)
-	void CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int trap_x, int trap_y, int sizeX, int sizeY);
+	void CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int trap_x, int trap_y, int sizeX, int sizeY, int spd);
 	void CreatePITFALL(int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int pStepX = 1, int pStepY = 1, int stepX = 1, int stepY = 1);
 
 	//トラップ情報
@@ -87,6 +87,7 @@ public:
 		int trapSizeX, trapSizeY;			//トラップサイズ
 		int preStepsAheadX, preStepsAheadY;	//どの範囲のチップを変化させるか
 		int stepsAheadX, stepsAheadY;		//どの範囲のチップを変化させるか
+		int Spd;
 
 		//トラップ種類
 		TRAP_TYPE trap_type;

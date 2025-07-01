@@ -6,6 +6,8 @@ void MapChip::Init(){
 
 	currentStage = STAGE_1;
 	i = 0;
+
+	memset(&trap_vec, 0, sizeof(vector<TrapData>));
 }
 
 void MapChip::Load() {
@@ -47,26 +49,26 @@ void MapChip::Draw() {
 		{
 		case LEFT_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
-				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[LEFT_MOVE], true);
-			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
+				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, handle[0], true);
+			//DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case RIGHT_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
-				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[RIGHT_MOVE], true);
-			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
+				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, handle[0], true);
+			//DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case UP_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
-				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[UP_MOVE], true);
-			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
+				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, handle[0], true);
+			//DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case DOWN_MOVE:
 			DrawModiGraph(trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY, trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY,
-				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trapHandle[DOWN_MOVE], true);
-			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
+				trap_vec[trapIndex].trapX + trap_vec[trapIndex].trapSizeX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, trap_vec[trapIndex].trapX, trap_vec[trapIndex].trapY + trap_vec[trapIndex].trapSizeY, handle[0], true);
+			//DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 255, 255), false);
 			break;
 		case PITFALL:
-			DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 0, 0), false);
+			//DrawBox(trap_vec[trapIndex].triggerX, trap_vec[trapIndex].triggerY, trap_vec[trapIndex].triggerX + trap_vec[trapIndex].triggerXSize, trap_vec[trapIndex].triggerY + trap_vec[trapIndex].triggerYSize, GetColor(255, 0, 0), false);
 			break;
 		case TRAP_NUM:
 			break;
@@ -112,7 +114,7 @@ void MapChip::Read(int stageId){
 	fclose(fp);
 }
 
-void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int trap_x, int trap_y, int sizeX, int sizeY){
+void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int triggerSizeX, int triggerSizeY, int trap_x, int trap_y, int sizeX, int sizeY, int spd){
 	TrapData traps;
 
 	traps.isTrigger = false;		//トラップ発生
@@ -126,6 +128,7 @@ void MapChip::CreateTrap(TRAP_TYPE type, int trigger_x, int trigger_y, int trigg
 	traps.trapNextY = traps.trapY = trap_y;
 	traps.trapSizeX = sizeX;
 	traps.trapSizeY = sizeY;
+	traps.Spd = spd;
 
 	//トラップの種類設定
 	traps.trap_type = type;

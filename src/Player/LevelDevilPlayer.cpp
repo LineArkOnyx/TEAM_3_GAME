@@ -59,6 +59,8 @@ Player::~Player()
 
 void Player::Init()
 {
+	m_fXPos = 64.0f;
+	m_fYPos = 64.0f;
 	//ècâ°ÉTÉCÉY
 	m_fWidth = PLAYER_WIDTH;
 	m_fHeight = PLAYER_HEIGHT;
@@ -125,10 +127,10 @@ void Player::Gravity()
 	if (m_fYSpeed < PLAYER_MAX_GRAVITY) {
 		m_fYSpeed += PLAYER_GRAVITY;
 	}
-	//ècï˚å¸Ç…ìñÇΩÇ¡ÇΩÇÁé~ÇﬂÇÈ
-	if (m_fNextYPos >= 720 - 32)
+	//âÊñ äOÇ…èoÇΩÇÁéÄñS
+	if (m_fNextYPos > 720 || m_fNextYPos < 0 || m_fNextXPos > 1280 || m_fNextYPos < 0)
 	{
-		m_fNextYPos = 720-32;
+		m_bIsAlive = false;
 	}
 }
 

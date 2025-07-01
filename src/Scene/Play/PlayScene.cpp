@@ -13,7 +13,7 @@ void PlayScene::Load()
 	maps.Load();
 	//ÉgÉâÉbÉvê∂ê¨(âº)
 	maps.CreatePITFALL(600, 720 - 64, 64, 64, 18, 1, 23, 23);
-	maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 720, 1000, 64);
+	maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 750, 1000, 64 ,3);
 
 	player.Load();
 
@@ -32,6 +32,10 @@ int PlayScene::Step()
 
 	Effectmanager.Step();
 	Effectmanager.Update();
+
+	if (!player.GetAlliveFlag()) {
+		SequenceID = INIT_SEQUENCE;
+	}
 	
 	return Sequence;
 }

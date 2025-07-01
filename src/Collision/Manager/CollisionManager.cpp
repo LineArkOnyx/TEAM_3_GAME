@@ -94,11 +94,11 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 
 				//もし左にブロックが動いていれば
 				if (dir[2]) {
-					player.SetNextXPos(player.GetNextXPos() - 1);
+					player.SetNextXPos(player.GetNextXPos() - map.GetTrap(trapIndex).Spd);
 				}
 				//もし右にブロックが動いていれば
 				if (dir[3]) {
-					player.SetNextXPos(player.GetNextXPos() + 1);
+					player.SetNextXPos(player.GetNextXPos() + map.GetTrap(trapIndex).Spd);
 				}
 
 			}
@@ -160,16 +160,16 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 			switch (map.GetTrap(trapIndex).trap_type)
 			{
 			case LEFT_MOVE:
-				map.GetTrap(trapIndex).MoveTrapX(-1);
+				map.GetTrap(trapIndex).MoveTrapX(-map.GetTrap(trapIndex).Spd);
 				break;
 			case RIGHT_MOVE:
-				map.GetTrap(trapIndex).MoveTrapX(1);
+				map.GetTrap(trapIndex).MoveTrapX(map.GetTrap(trapIndex).Spd);
 				break;
 			case UP_MOVE:
-				map.GetTrap(trapIndex).MoveTrapY(-1);
+				map.GetTrap(trapIndex).MoveTrapY(-map.GetTrap(trapIndex).Spd);
 				break;
 			case DOWN_MOVE:
-				map.GetTrap(trapIndex).MoveTrapY(1);
+				map.GetTrap(trapIndex).MoveTrapY(map.GetTrap(trapIndex).Spd);
 				break;
 			case PITFALL:
 				for (int y = map.GetTrap(trapIndex).preStepsAheadY; y < map.GetTrap(trapIndex).stepsAheadY; y++) {
