@@ -44,6 +44,7 @@ private:
 
 	bool m_bIsAlive;		//生存フラグ
 	bool m_bIsJump;			//ジャンプフラグ
+	bool m_bIsJump_pad;		//ジャンプパッド
 
 	tagPlayerState m_eState;
 	tagPlayerState m_eOldState;
@@ -117,8 +118,11 @@ public:
 	//更新後のY座標の設定
 	void SetNextYPos(float Pos) { m_fNextYPos = Pos; }
 
-	//生存フラグ設定
-	void SetAliveFlg(bool flg) { m_bIsAlive = flg; }
 	//ジャンプフラグの設定
 	void SetJumpFlag(bool flag) { m_bIsJump = flag; }
+
+public:
+	//画面外でプレイヤーをキルする
+	void Death();
+
 };

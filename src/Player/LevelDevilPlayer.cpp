@@ -9,7 +9,8 @@ constexpr float PLAYER_HEIGHT = 32.0f;
 
 //プレイヤーのスピード
 constexpr float PLAYER_SPEED = 3.0f;
-constexpr float PLAYER_JUMP_SPEED = 8.0f;
+constexpr float PLAYER_JUMP_SPEED = 11.0f;
+constexpr float PLAYER_JUMPPAD_JUMPSPEED = 15.0f;
 
 //プレイヤーに与える重力
 constexpr float PLAYER_GRAVITY = 0.6f;
@@ -27,8 +28,8 @@ constexpr int IMG_Y_SIZE = 32;
 
 Player::Player()
 {
-	m_fXPos = 64.0f;
-	m_fYPos = 64.0f;
+	m_fXPos = 0.0f;
+	m_fYPos = 0.0f;
 	m_fNextXPos = 0.0f;
 	m_fNextYPos = 0.0f;
 	m_fRot = 0.0f;
@@ -50,6 +51,7 @@ Player::Player()
 
 	m_bIsAlive = false;
 	m_bIsJump = false;
+	m_bIsJump_pad = false;
 }
 
 Player::~Player()
@@ -59,8 +61,6 @@ Player::~Player()
 
 void Player::Init()
 {
-	m_fXPos = 64.0f;
-	m_fYPos = 64.0f;
 	//縦横サイズ
 	m_fWidth = PLAYER_WIDTH;
 	m_fHeight = PLAYER_HEIGHT;
@@ -98,16 +98,18 @@ void Player::Step()
 	Jump();
 	//移動
 	Move();
-	//アニメーション
-	Animation();
+	//殺す
+	Death();
 }
 
 void Player::Draw()
 {
 	//生存フラグがOFF
 	if (!m_bIsAlive) { return; }
+	DrawGraph(m_fXPos, m_fYPos, m_iHndl[m_iImgNum], true);
 
-	DrawBox(m_fXPos, m_fYPos, m_fXPos + 32, m_fYPos + 32, GetColor(255, 0, 0), true);
+	//アニメーション
+	Animation();
 }
 
 void Player::Fin()
@@ -127,11 +129,6 @@ void Player::Gravity()
 	if (m_fYSpeed < PLAYER_MAX_GRAVITY) {
 		m_fYSpeed += PLAYER_GRAVITY;
 	}
-	//画面外に出たら死亡
-	if (m_fNextYPos > 720 || m_fNextYPos < 0 || m_fNextXPos > 1280 || m_fNextYPos < 0)
-	{
-		m_bIsAlive = false;
-	}
 }
 
 void Player::Control()
@@ -141,12 +138,20 @@ void Player::Control()
 	if (CheckHitKey(KEY_INPUT_D))
 	{
 		fSpd = PLAYER_SPEED;
-		m_eState = PLAYER_STATE_RIGHT_RUN;
+		if (!m_bIsJump) {
+			m_eState = PLAYER_STATE_RIGHT_RUN;
+		}
 	}
 	else if (CheckHitKey(KEY_INPUT_A))
 	{
 		fSpd = -PLAYER_SPEED;
-		m_eState = PLAYER_STATE_LEFT_RUN;
+		if (!m_bIsJump) {
+			m_eState = PLAYER_STATE_LEFT_RUN;
+		}
+	}
+	else
+	{
+		m_eState = PLAYER_STATE_NORMAL;
 	}
 
 	m_fXSpeed = fSpd;
@@ -158,7 +163,14 @@ void Player::Jump()
 		if (!m_bIsJump) {
 			m_bIsJump = true;
 			m_fYSpeed = -PLAYER_JUMP_SPEED;
+			m_eState = PLAYER_STATE_JUMP;
 		}
+	}
+	if (m_bIsJump_pad)
+	{
+		m_bIsJump = true;
+		m_fYSpeed = -PLAYER_JUMPPAD_JUMPSPEED;
+		m_eState = PLAYER_STATE_JUMP;
 	}
 }
 
@@ -174,14 +186,14 @@ void Player::Animation()
 	{
 		CntFream();
 		ResetFream();
-		if (m_eOldState) {
+		if (m_eOldState == PLAYER_STATE_NORMAL) {
 			m_iImgNum = 1;
 		}
 		if (m_iImgNum >= 2)
 		{
 			m_iImgNum = 1;
 		}
-		if (m_iFreamCnt / 10 == 0) {
+		if (m_iFreamCnt % 15 == 0) {
 			m_iImgNum++;
 		}
 	
@@ -189,12 +201,23 @@ void Player::Animation()
 	//左移動
 	if (m_eState == PLAYER_STATE_LEFT_RUN)
 	{
-
+		CntFream();
+		ResetFream();
+		if (m_eOldState == PLAYER_STATE_NORMAL) {
+			m_iImgNum = 1;
+		}
+		if (m_iImgNum >= 2)
+		{
+			m_iImgNum = 1;
+		}
+		if (m_iFreamCnt % 15 == 0) {
+			m_iImgNum++;
+		}
 	}
 	//ジャンプ
 	if (m_eState == PLAYER_STATE_JUMP)
 	{
-
+		m_iImgNum = 3;
 	}
 }
 
@@ -251,5 +274,13 @@ void Player::ResetSecond()
 {
 	if (m_iSecond >= 10000) {
 		m_iSecond = 0;
+	}
+}
+
+void Player::Death()
+{
+	if (m_fNextYPos >= 800)
+	{
+		m_bIsAlive = false;
 	}
 }
