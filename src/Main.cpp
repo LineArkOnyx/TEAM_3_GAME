@@ -5,6 +5,7 @@
 
 #include "Scene/SceneManager.h"
 #include "Input/Input.h"
+#include "Font/Font.h"
 #include "VirtualButton/VirtualButton.h"
 
 // define
@@ -29,11 +30,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//描画するスクリーンを設定する
 	SetDrawScreen(DX_SCREEN_BACK);
+
+	SetBackgroundColor(180, 100, 50);
 	
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
 	
 	SceneManager cScene;
+	Font::Init();
+	Font::FontFileLoad();
 	CInput::InitInput();
 	CVirtualButton_Square::GetInstance()->Init();
 	//-----------------------------------------
@@ -72,6 +77,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//-----------------------------------------
 	//最後に１回だけやる処理をここに書く
 	CVirtualButton_Square::DeleteInstance();
+	Font::Fin();
 	
 	//-----------------------------------------
 	//DXライブラリの後処理

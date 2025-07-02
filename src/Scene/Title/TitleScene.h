@@ -6,6 +6,7 @@
 #include "../../Collision/Manager/CollisionManager.h"
 #include "../../MapChip/MapChip.h"
 #include "../../Player/LevelDevilPlayer.h"
+#include "../../Font/Font.h"
 
 // ★ トランジション演出を使うために追加
 #include "Move.h" 

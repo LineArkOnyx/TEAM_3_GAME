@@ -68,6 +68,11 @@ void Player::Init()
 	m_bIsAlive = true;
 	//•`‰æ‚·‚é‰æ‘œ‚Ì”z—ñ”Ô†
 	m_iImgNum = 0;
+
+	m_fNextXPos = 128.0f;
+	m_fNextYPos = 128.0f;
+	m_fXPos = 128.0f;
+	m_fYPos = 128.0f;
 }
 
 void Player::Load()

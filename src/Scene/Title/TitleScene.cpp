@@ -27,6 +27,7 @@ void TitleScene::Load()
 		m_iStartHndl = LoadGraph(TITLE_START_PATH);
 		TitleHndl = LoadGraph("data/background.png");
 	}
+	Font::FontHandleLoad();
 }
 int TitleScene::Step()
 {
@@ -131,6 +132,8 @@ void TitleScene::Draw()
 			DrawGraph(m_fStartPosX, m_fStartPosY, m_iStartHndl, true);
 			DrawBox(m_fStartPosX, m_fStartPosY + 5, 53, 53, GetColor(255, 0, 0), buttonReach);
 		}
+
+		DrawStringToHandle(0, 0, "タイトル", GetColor(0, 0, 255), Font::fontHandle[ロックンロール][_64_6]);
 		break;
 
 	case EXIT_SEQUENCE:

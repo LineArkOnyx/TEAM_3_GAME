@@ -118,6 +118,8 @@ public:
 	//更新後のY座標の設定
 	void SetNextYPos(float Pos) { m_fNextYPos = Pos; }
 
+	void SetAliveFlg(bool flg) { m_bIsAlive = flg; }
+
 	//ジャンプフラグの設定
 	void SetJumpFlag(bool flag) { m_bIsJump = flag; }
 

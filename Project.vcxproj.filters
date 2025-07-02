@@ -61,6 +61,9 @@
     <Filter Include="ソース ファイル\Scene\Title\Move">
       <UniqueIdentifier>{9d4cd9d0-1a4b-49d1-9575-69b25fb43373}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Font">
+      <UniqueIdentifier>{5aa3db5b-2b9d-4b0f-b5bd-c5fc810ff77f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -111,6 +114,9 @@
     <ClCompile Include="src\Scene\Title\Move.cpp">
       <Filter>ソース ファイル\Scene\Title\Move</Filter>
     </ClCompile>
+    <ClCompile Include="src\Font\Font.cpp">
+      <Filter>ソース ファイル\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Scene\SceneManager.h">
@@ -157,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="src\Scene\Title\Move.h">
       <Filter>ソース ファイル\Scene\Title\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Font\Font.h">
+      <Filter>ソース ファイル\Font</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
