@@ -6,7 +6,11 @@
 #include "../../Collision/Manager/CollisionManager.h"
 #include "../../MapChip/MapChip.h"
 #include "../../Player/LevelDevilPlayer.h"
-class TitleScene 
+
+// ★ トランジション演出を使うために追加
+#include "Move.h" 
+
+class TitleScene
 {
 private:
 	enum SEQUENCE_ID
@@ -26,19 +30,22 @@ private:
 	int Step();
 	void Exit();
 
-	//マウスカーソル
+	// マウスカーソル座標
 	int MousePosX;
 	int MousePosY;
 
-	//スタートボタン
+	// スタートボタン
 	float m_fStartPosX;
 	float m_fStartPosY;
 	int m_iStartHndl;
-
 	bool buttonReach;
 
+	// タイトル画像
 	int TitleHndl;
 	double Exlate;
+
+	// ★ トランジション演出が終わったかどうか
+	bool isTransitionFinished;
 
 public:
 	TitleScene();

@@ -1,60 +1,59 @@
 #include "Move.h"
-#include "../../Input/Input.h"
-#include "../../Collision/Collision.h"
 
+int Move::imageTop = -1;
+int Move::imageBottom = -1;
+int Move::yTop = -600;
+int Move::yBottom = 600;
+int Move::holdCounter = 0;
+Move::State Move::currentState = Move::State::Entering;
 
-
-void Move::Init()
-{
-	// 初期化処理
-	// ここでは何もしない
-	// 必要に応じて初期化コードを追加
-}
-void Move::Load()
-{
-	// リソースの読み込み処理
-	// ここでは何もしない
-	// 必要に応じてリソース読み込みコードを追加
-}
-int Move::Step()
-{
-	// メインの処理
-	// ここでは何もしない
-	// 必要に応じてメイン処理コードを追加
-	// 0を返すことで、シーンの変更がないことを示す
-	return 0;
-}
-void Move::Exit()
-{
-	// 終了処理
-// ここでは何もしない
-// 必要に応じて終了処理コードを追加
+void Move::Init() {
+    imageTop = LoadGraph("data/Move/Image (1).png");   // 上から来る画像
+    imageBottom = LoadGraph("data/Move/Image.png");    // 下から来る画像
+    yTop = -600;
+    yBottom = 600;
+    holdCounter = 0;
+    currentState = State::Entering;
 }
 
-Move::Move()
-{
-	// コンストラクタ
-	// ここでは何もしない
-	// 必要に応じて初期化コードを追加
-}
-Move::~Move()
-{
-	// デストラクタ
-	// ここでは何もしない
-	// 必要に応じて終了処理コードを追加
+void Move::Update() {
+    switch (currentState) {
+    case State::Entering:
+        yTop += 20;
+        yBottom -= 20;
+        if (yTop >= 0) {
+            yTop = 0;
+            yBottom = 0;
+            currentState = State::Holding;
+        }
+        break;
+
+    case State::Holding:
+        holdCounter++;
+        if (holdCounter >= 30) { // 0.5秒程度
+            currentState = State::Reversing;
+        }
+        break;
+
+    case State::Reversing:
+        yTop -= 20;
+        yBottom += 20;
+        if (yTop < -600 && yBottom > 600) {
+            currentState = State::Finished;
+        }
+        break;
+
+    case State::Finished:
+        // 何もしない
+        break;
+    }
 }
 
-int Move::Loop()
-{
-	// シーンのループ処理
-	// ここでは何もしない
-	// 必要に応じてループ処理コードを追加
-	return 0; // 0を返すことで、シーンの変更がないことを示す
+void Move::Draw() {
+    DrawGraph(0, yTop, imageTop, true);
+    DrawGraph(0, yBottom, imageBottom, true);
 }
-void Move::Draw()
-{
-	// 描画処理
-	// ここでは何もしない
-	// 必要に応じて描画コードを追加
-	DrawFormatString(0, 0, GetColor(255, 255, 0), "Move Scene");
+
+bool Move::IsFinished() {
+    return currentState == State::Finished;
 }
