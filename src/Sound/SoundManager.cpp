@@ -77,6 +77,9 @@ bool CSoundManager::LoadAllData()
 		"data/Sound/SE/Magic.mp3",
 		"data/Sound/SE/Hit.mp3",
 		"data/Sound/SE/Recover.mp3",
+		"data/Sound/SE/Death_SE.mp3",
+		"data/Sound/SE/Devil_Jump_SE.mp3",
+		"data/Sound/SE/Goal_SE.mp3"
 	};
 
 	for (int SoundIndex = 0; SoundIndex < SOUNDID_NUM; SoundIndex++)

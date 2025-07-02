@@ -16,7 +16,9 @@ enum tagSoundID {
 		SOUNDID_SE_AORI_1,			// SE 煽り１
 		SOUNDID_SE_AORI_2,			// SE 煽り２
 		SOUNDID_SE_SCENECHANGE,		// SE シーン切り替え
-
+		SOUNDID_SE_DEATH,			// SE 死亡
+		SOUNDID_SE_DEVIL_JUMP,		// SE レベルデビルジャンプ
+		SOUNDID_SE_GOAL,			// SE ゴール
 
 		SOUNDID_NUM
 	};
