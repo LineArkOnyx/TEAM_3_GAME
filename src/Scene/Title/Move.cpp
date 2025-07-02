@@ -28,6 +28,7 @@ void Move::Update() {
         }
         break;
 
+        //ここで間隔調整できます。　お好きに！！
     case State::Holding:
         holdCounter++;
         if (holdCounter >= 30) { // 0.5秒程度
