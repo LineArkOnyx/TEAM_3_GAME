@@ -28,7 +28,6 @@ void SelectScene::Load()
 	StageIconHandle = LoadGraph(ISLAND_HANDLE);
 	PlayerIconHandle = LoadGraph(PLAYER_HANDLE);
 
-
 }
 int SelectScene::Step()
 {
@@ -126,6 +125,16 @@ void SelectScene::Exit()
 //
 //}
 
+void SelectScene::SaveStageNumber(){
+	FILE* fp;
+	fopen_s(&fp, Path, "wb+");
+	if (fp != NULL)
+	{
+		fwrite(&DecisionStage, sizeof(int), 1, fp);
+		fclose(fp);
+	}
+}
+
 int SelectScene::Loop()
 {
 	int SceneCangeFlg = 0;//リターンする用のシーン切り替えフラグ
@@ -152,7 +161,7 @@ int SelectScene::Loop()
 		break;
 
 	case EXIT_SEQUENCE:
-
+		SaveStageNumber();
 		Exit();
 		SequenceID = INIT_SEQUENCE;
 		SceneCangeFlg = 1;

@@ -12,6 +12,10 @@
 #define PLAYER_HANDLE ("data/Select/kari.png")
 #define ISLAND_HANDLE ("data/Select/island.png")
 
+const char Path[256] = {
+	"data/File/data.bin",
+};
+
 class SelectScene
 {
 private:
@@ -69,7 +73,10 @@ private:
 	int StageIconHandle;
 	int PlayerIconHandle;
 
+	void SaveStageNumber();
+
 public:
+
 	SelectScene() = default;
 	~SelectScene() = default;
 

@@ -11,6 +11,10 @@
 
 const int PHASE_NUM = 3;	//ƒQ[ƒW‚Ì”
 
+const char _Path[256] = {
+	"data/File/data.bin",
+};
+
 class PlayScene
 {
 private:
@@ -37,6 +41,10 @@ private:
 	CInput  input;
 
 	EffectManager Effectmanager;
+
+	void ReadStageNumber();
+
+	int num;
 
 public:
 	PlayScene();

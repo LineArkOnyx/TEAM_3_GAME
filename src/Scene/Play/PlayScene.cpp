@@ -10,10 +10,26 @@ void PlayScene::Init()
 }
 void PlayScene::Load()
 {
-	maps.Load();
+	ReadStageNumber();
+
+	maps.Load(num);
+
 	//ÉgÉâÉbÉvê∂ê¨(âº)
-	maps.CreatePITFALL(600, 720 - 64, 64, 64, 18, 1, 23, 23);
-	maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 750, 1000, 64 ,3);
+	switch (num) {
+	case 0:
+		maps.CreatePITFALL(576 - 16, 720 - 64, 64, 64, 17, 1, 20, 23);
+		maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 750, 1000, 64, 3);
+		break;
+	case 1:
+
+		break;
+	case 2:
+
+		break;
+	default:
+
+		break;
+	}
 
 	player.Load();
 
@@ -43,6 +59,16 @@ void PlayScene::Exit()
 {
 	
 	Effectmanager.Fin();
+}
+
+void PlayScene::ReadStageNumber(){
+	FILE* fp;
+	fopen_s(&fp, _Path, "rb+");
+	if (fp != NULL)
+	{
+		fread(&num, sizeof(int), 1, fp);
+		fclose(fp);
+	}
 }
 
 PlayScene::PlayScene()
@@ -107,9 +133,9 @@ void PlayScene::Draw()
 
 	case STEP_SEQUENCE:
 		
-		DrawFormatString(0, 0, GetColor(255, 255, 0), "PLAY_STEP");
 		maps.Draw();
 		player.Draw();
+		DrawFormatString(0, 0, GetColor(255, 255, 0), "%d", num);
 
 		Effectmanager.Draw();
 		break;

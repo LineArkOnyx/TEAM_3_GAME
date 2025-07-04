@@ -131,9 +131,9 @@ void TitleScene::Draw()
 			// トランジション後のみ表示
 			DrawGraph(m_fStartPosX, m_fStartPosY, m_iStartHndl, true);
 			DrawBox(m_fStartPosX, m_fStartPosY + 5, 53, 53, GetColor(255, 0, 0), buttonReach);
-		}
 
-		DrawStringToHandle(0, 0, "タイトル", GetColor(0, 0, 255), Font::fontHandle[ロックンロール][_64_6]);
+			DrawStringToHandle(640 - 150, 0, "デビルもどき", GetColor(0, 0, 255), Font::fontHandle[かくめい][_64_6]);
+		}
 		break;
 
 	case EXIT_SEQUENCE:

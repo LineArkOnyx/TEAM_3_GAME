@@ -284,7 +284,7 @@ void Player::ResetSecond()
 
 void Player::Death()
 {
-	if (m_fNextYPos >= 800)
+	if (m_fNextYPos >= 720)
 	{
 		m_bIsAlive = false;
 	}

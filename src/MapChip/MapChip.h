@@ -62,7 +62,7 @@ public:
 
 	void Init();
 
-	void Load();
+	void Load(int num);
 
 	void Step();
 
