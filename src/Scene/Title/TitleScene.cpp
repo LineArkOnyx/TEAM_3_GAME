@@ -8,6 +8,13 @@ const int STARTBUTTON_HEIGHT = 150;
 
 void TitleScene::Init()
 {
+	maps.Init();
+
+	player.Init();
+
+	Effectmanager.Init();
+
+
 	m_fStartPosX = 200.0f;
 	m_fStartPosY = 200.0f;
 
@@ -27,6 +34,7 @@ void TitleScene::Load()
 		m_iStartHndl = LoadGraph(TITLE_START_PATH);
 		TitleHndl = LoadGraph("data/background.png");
 	}
+	
 	Font::FontHandleLoad();
 }
 int TitleScene::Step()
