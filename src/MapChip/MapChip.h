@@ -31,6 +31,7 @@ enum TRAP_TYPE {
 };
 
 enum STAGE_TYPE {
+	STAGE_TITLE,
 	STAGE_1,
 	STAGE_2,
 
@@ -55,6 +56,8 @@ const char CHIP_IMAGE_PATH[256] = {
 const char CsvFilePath[STAGE_NUM][256] = {
 	"data/Map/Map001.csv",
 	"data/Map/Map002.csv",
+	//タイトルマップチップです
+	"data/Title/MapTitle.csv"
 };
 
 class MapChip {

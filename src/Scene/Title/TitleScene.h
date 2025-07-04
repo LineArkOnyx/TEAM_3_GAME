@@ -7,9 +7,11 @@
 #include "../../MapChip/MapChip.h"
 #include "../../Player/LevelDevilPlayer.h"
 #include "../../Font/Font.h"
+#include "../../Effect/Effect.h"
 
 // ★ トランジション演出を使うために追加
 #include "Move.h" 
+
 
 class TitleScene
 {
@@ -48,6 +50,13 @@ private:
 	// ★ トランジション演出が終わったかどうか
 	bool isTransitionFinished;
 
+
+	CollisonManager coll;
+	MapChip maps;
+	Player  player;
+	CInput  input;
+
+	EffectManager Effectmanager;
 public:
 	TitleScene();
 	~TitleScene();
