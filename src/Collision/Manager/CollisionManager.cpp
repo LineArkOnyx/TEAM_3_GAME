@@ -1,11 +1,15 @@
 #include "CollisionManager.h"
 
+void CollisonManager::Init(){
+	goal = false;
+}
+
 void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 
 	//プレイヤーとマップの当たり判定
 	for (int mapIndexY = 0; mapIndexY < CHIP_Y_MAX; mapIndexY++) {
 		for (int mapIndexX = 0; mapIndexX < CHIP_X_MAX; mapIndexX++) {
-			if (map.GetFileData(mapIndexY, mapIndexX) == -1 || map.GetFileData(mapIndexY, mapIndexX) == 1 || map.GetFileData(mapIndexY, mapIndexX) == 2)continue;
+			if (map.GetFileData(mapIndexY, mapIndexX) == -1 || map.GetFileData(mapIndexY, mapIndexX) == 3 || map.GetFileData(mapIndexY, mapIndexX) == 2)continue;
 			bool dir[4] = { false };
 			player.GetMoveDir(dir);
 
@@ -27,7 +31,7 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 	}
 	for (int mapIndexY = 0; mapIndexY < CHIP_Y_MAX; mapIndexY++) {
 		for (int mapIndexX = 0; mapIndexX < CHIP_X_MAX; mapIndexX++) {
-			if (map.GetFileData(mapIndexY, mapIndexX) == -1 || map.GetFileData(mapIndexY, mapIndexX) == 1 || map.GetFileData(mapIndexY, mapIndexX) == 2)continue;
+			if (map.GetFileData(mapIndexY, mapIndexX) == -1 || map.GetFileData(mapIndexY, mapIndexX) == 3 || map.GetFileData(mapIndexY, mapIndexX) == 2)continue;
 			bool dir[4] = { false };
 			player.GetMoveDir(dir);
 
@@ -52,9 +56,21 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 		for (int mapIndexX = 0; mapIndexX < CHIP_X_MAX; mapIndexX++) {
 			int mapX = mapIndexX * CHIP_SIZE;
 			int mapY = mapIndexY * CHIP_SIZE;
-			if (map.GetFileData(mapIndexY, mapIndexX) == 1 || map.GetFileData(mapIndexY, mapIndexX) == 2) {
+			if (map.GetFileData(mapIndexY, mapIndexX) == 2) {
 				if (IsHitRect(player.GetNextXPos(), player.GetNextYPos(), player.GetWidth(), player.GetHeight(), mapX, mapY, CHIP_SIZE, CHIP_SIZE)) {
 					player.SetAliveFlg(false);
+				}
+			}
+		}
+	}
+	//ゴールの処理
+	for (int mapIndexY = 0; mapIndexY < CHIP_Y_MAX; mapIndexY++) {
+		for (int mapIndexX = 0; mapIndexX < CHIP_X_MAX; mapIndexX++) {
+			int mapX = mapIndexX * CHIP_SIZE;
+			int mapY = mapIndexY * CHIP_SIZE;
+			if (map.GetFileData(mapIndexY, mapIndexX) == 3) {
+				if (IsHitRect(player.GetNextXPos(), player.GetNextYPos(), player.GetWidth(), player.GetHeight(), mapX, mapY, CHIP_SIZE, CHIP_SIZE)) {
+					goal = true;
 				}
 			}
 		}
@@ -160,16 +176,24 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 			switch (map.GetTrap(trapIndex).trap_type)
 			{
 			case LEFT_MOVE:
-				map.GetTrap(trapIndex).MoveTrapX(-map.GetTrap(trapIndex).Spd);
+				if (map.GetTrap(trapIndex).finX < map.GetTrap(trapIndex).trapX) {
+					map.GetTrap(trapIndex).MoveTrapX(-map.GetTrap(trapIndex).Spd);
+				}
 				break;
 			case RIGHT_MOVE:
-				map.GetTrap(trapIndex).MoveTrapX(map.GetTrap(trapIndex).Spd);
+				if (map.GetTrap(trapIndex).finX > map.GetTrap(trapIndex).trapX) {
+					map.GetTrap(trapIndex).MoveTrapX(map.GetTrap(trapIndex).Spd);
+				}
 				break;
 			case UP_MOVE:
-				map.GetTrap(trapIndex).MoveTrapY(-map.GetTrap(trapIndex).Spd);
+				if (map.GetTrap(trapIndex).finY < map.GetTrap(trapIndex).trapY) {
+					map.GetTrap(trapIndex).MoveTrapY(-map.GetTrap(trapIndex).Spd);
+				}
 				break;
 			case DOWN_MOVE:
-				map.GetTrap(trapIndex).MoveTrapY(map.GetTrap(trapIndex).Spd);
+				if (map.GetTrap(trapIndex).finX > map.GetTrap(trapIndex).trapX) {
+					map.GetTrap(trapIndex).MoveTrapY(map.GetTrap(trapIndex).Spd);
+				}
 				break;
 			case PITFALL:
 				for (int y = map.GetTrap(trapIndex).preStepsAheadY; y < map.GetTrap(trapIndex).stepsAheadY; y++) {

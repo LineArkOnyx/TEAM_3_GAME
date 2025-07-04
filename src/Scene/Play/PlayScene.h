@@ -43,8 +43,11 @@ private:
 	EffectManager Effectmanager;
 
 	void ReadStageNumber();
+	void SaveStageNumber();
 
 	int num;
+
+	int nextNum;
 
 public:
 	PlayScene();

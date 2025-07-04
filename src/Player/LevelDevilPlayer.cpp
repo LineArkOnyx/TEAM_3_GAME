@@ -59,7 +59,7 @@ Player::~Player()
 
 }
 
-void Player::Init()
+void Player::Init(int num)
 {
 	//c‰¡ƒTƒCƒY
 	m_fWidth = PLAYER_WIDTH;
@@ -69,10 +69,19 @@ void Player::Init()
 	//•`‰æ‚·‚é‰æ‘œ‚Ì”z—ñ”Ô†
 	m_iImgNum = 0;
 
-	m_fNextXPos = 128.0f;
-	m_fNextYPos = 128.0f;
-	m_fXPos = 128.0f;
-	m_fYPos = 128.0f;
+	switch (num) {
+	case 0:
+		m_fXPos = 128.0f;
+		m_fYPos = 720.0f - 64.0f;
+		break;
+	case 1:
+		m_fXPos = 128.0f;
+		m_fYPos = 8 * 32;
+		break;
+	default:
+		break;
+	}
+	
 }
 
 void Player::Load()
@@ -285,6 +294,18 @@ void Player::ResetSecond()
 void Player::Death()
 {
 	if (m_fNextYPos >= 720)
+	{
+		m_bIsAlive = false;
+	}
+	if (m_fNextYPos <= 0)
+	{
+		m_bIsAlive = false;
+	}
+	if (m_fNextXPos >= 1280)
+	{
+		m_bIsAlive = false;
+	}
+	if (m_fNextXPos <= 0)
 	{
 		m_bIsAlive = false;
 	}

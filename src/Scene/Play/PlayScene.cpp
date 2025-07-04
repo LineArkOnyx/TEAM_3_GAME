@@ -2,26 +2,29 @@
 
 void PlayScene::Init()
 {
+	ReadStageNumber();
+	coll.Init();
 	maps.Init();
 
-	player.Init();
+	player.Init(num);
 
 	Effectmanager.Init();
+
+	nextNum = 0;
 }
 void PlayScene::Load()
 {
-	ReadStageNumber();
 
 	maps.Load(num);
 
 	//ƒgƒ‰ƒbƒv¶¬(‰¼)
 	switch (num) {
 	case 0:
-		maps.CreatePITFALL(576 - 16, 720 - 64, 64, 64, 17, 1, 20, 23);
-		maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 750, 1000, 64, 3);
+		maps.CreatePITFALL(576, 720 - 64, 64, 64, 17, 1, 21, 23);
+		maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 750, 1000, 64, -1, -64, 7.6);
 		break;
 	case 1:
-
+		maps.CreateTrap(LEFT_MOVE, 200, 160, 64, 64, 9 * 32, 9 * 32, 64, 32, 160, -1, 7.6);
 		break;
 	case 2:
 
@@ -52,6 +55,16 @@ int PlayScene::Step()
 	if (!player.GetAlliveFlag()) {
 		SequenceID = INIT_SEQUENCE;
 	}
+
+	if (coll.goal) {
+		SequenceID = INIT_SEQUENCE;
+		num = num + 1;
+		SaveStageNumber();
+		nextNum = num;
+		if (nextNum > 4) {
+			Sequence = 1;
+		}
+	}
 	
 	return Sequence;
 }
@@ -67,6 +80,16 @@ void PlayScene::ReadStageNumber(){
 	if (fp != NULL)
 	{
 		fread(&num, sizeof(int), 1, fp);
+		fclose(fp);
+	}
+}
+
+void PlayScene::SaveStageNumber(){
+	FILE* fp;
+	fopen_s(&fp, _Path, "wb+");
+	if (fp != NULL)
+	{
+		fwrite(&num, sizeof(int), 1, fp);
 		fclose(fp);
 	}
 }

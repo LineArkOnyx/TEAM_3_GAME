@@ -55,7 +55,7 @@ public:
 	~Player();
 
 	//‰Šú‰»
-	void Init();
+	void Init(int num);
 	//“Ç‚İ‚±‚İ
 	void Load();
 	//’Êíˆ—

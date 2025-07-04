@@ -10,6 +10,10 @@ protected:
 
 public:
 
+	void Init();
+
 	void PlayerToMap(Player& player, MapChip& map);
+
+	bool goal;
 
 };
