@@ -1,7 +1,0 @@
-﻿  TitleScene.cpp
-C:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
-  (ソース ファイル 'src/Scene/Title/TitleScene.cpp' をコンパイルしています)
-  
-C:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(156,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(156,14): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  Project.vcxproj -> C:\Users\2309434\Desktop\TEAM_3_GAME\x64\Debug\Project.exe
