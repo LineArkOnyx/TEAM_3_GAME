@@ -1,56 +1,7 @@
-﻿  CollisionManager.cpp
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
-  (ソース ファイル 'src/Collision/Manager/CollisionManager.cpp' をコンパイルしています)
-  
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(15,93): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(15,73): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(15,54): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(15,32): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(37,97): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(37,77): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(37,58): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(37,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(56,98): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(56,78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(56,59): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(56,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(77,92): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(77,72): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(77,53): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(77,31): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(125,96): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(125,76): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(125,57): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(125,35): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(154,88): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(154,68): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(154,49): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Collision\Manager\CollisionManager.cpp(154,31): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  Main.cpp
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
-  (ソース ファイル 'src/Main.cpp' をコンパイルしています)
-  
-  MapChip.cpp
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
-  (ソース ファイル 'src/MapChip/MapChip.cpp' をコンパイルしています)
-  
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\MapChip\MapChip.cpp(16,33): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\MapChip\MapChip.cpp(16,7): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-  PlayScene.cpp
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
-  (ソース ファイル 'src/Scene/Play/PlayScene.cpp' をコンパイルしています)
-  
-  SceneManager.cpp
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
-  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
-  
-  TitleScene.cpp
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+﻿  TitleScene.cpp
+C:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
   (ソース ファイル 'src/Scene/Title/TitleScene.cpp' をコンパイルしています)
   
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(140,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(140,14): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(141,39): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(141,12): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  コードを生成中...
-  Project.vcxproj -> D:\Users\2309434\Desktop\TEAM_3_GAME\x64\Debug\Project.exe
+C:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(156,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(156,14): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Project.vcxproj -> C:\Users\2309434\Desktop\TEAM_3_GAME\x64\Debug\Project.exe

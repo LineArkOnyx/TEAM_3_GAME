@@ -9,6 +9,7 @@
 #include "../../Font/Font.h"
 #include "../../Effect/Effect.h"
 
+
 // ★ トランジション演出を使うために追加
 #include "Move.h" 
 

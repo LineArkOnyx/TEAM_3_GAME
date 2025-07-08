@@ -31,9 +31,9 @@ enum TRAP_TYPE {
 };
 
 enum STAGE_TYPE {
-	STAGE_TITLE,
 	STAGE_1,
 	STAGE_2,
+	STAGE_TITLE,
 
 	STAGE_NUM,
 };
