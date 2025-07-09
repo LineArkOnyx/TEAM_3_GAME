@@ -70,7 +70,7 @@ bool CSoundManager::LoadAllData()
 	const char pFileName[SOUNDID_NUM][128] =
 	{
 		"data/Sound/BGM/TitleBGM.mp3",
-		"data/Sound/BGM/PlayBGM.mp3",
+		"data/Sound/BGM/PlayScene-BGM-125.mp3",
 		"data/Sound/SE/Decision.mp3",
 		"data/Sound/SE/Cancel.mp3",
 		"data/Sound/SE/Whip.mp3",

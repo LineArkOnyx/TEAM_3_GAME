@@ -7,7 +7,7 @@
 SceneManager::SceneManager()
 {
 	//Å‰‚Íƒ^ƒCƒgƒ‹‰æ–Ê‚É
-	m_eSceneID = SCENE_TITLE;
+	m_eSceneID = SCENE_SELECT;
 }
 
 void SceneManager::Loop()

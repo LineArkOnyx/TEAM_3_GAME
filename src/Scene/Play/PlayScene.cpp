@@ -1,4 +1,5 @@
 #include "PlayScene.h"
+#include "../../Sound/SoundManager.h"
 
 void PlayScene::Init()
 {
@@ -9,6 +10,12 @@ void PlayScene::Init()
 	player.Init(num);
 
 	Effectmanager.Init();
+
+	if (!CSoundManager::GetInstance()->IsPlay(SOUNDID_BGM_PLAY)) {
+		CSoundManager::GetInstance()->LoadAllData();
+		CSoundManager::GetInstance()->Play(SOUNDID_BGM_PLAY);
+		CSoundManager::GetInstance()->SetVolume(SOUNDID_BGM_PLAY, 1.0f);
+	}
 
 	nextNum = 0;
 }
@@ -70,7 +77,7 @@ int PlayScene::Step()
 }
 void PlayScene::Exit()
 {
-	
+	CSoundManager::GetInstance()->Exit();
 	Effectmanager.Fin();
 }
 
