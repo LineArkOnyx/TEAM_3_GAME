@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AORI\AORI.cpp" />
+    <ClCompile Include="src\AORI\AORIManager.cpp" />
     <ClCompile Include="src\Collision\Collision.cpp" />
     <ClCompile Include="src\Collision\Manager\CollisionManager.cpp" />
     <ClCompile Include="src\Effect\Effect.cpp" />
@@ -38,6 +40,8 @@
     <ClCompile Include="src\VirtualButton\VirtualButton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AORI\AORI.h" />
+    <ClInclude Include="src\AORI\AORIManager.h" />
     <ClInclude Include="src\Collision\Collision.h" />
     <ClInclude Include="src\Collision\Manager\CollisionManager.h" />
     <ClInclude Include="src\Effect\Effect.h" />

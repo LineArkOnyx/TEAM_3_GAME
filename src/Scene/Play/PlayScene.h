@@ -9,6 +9,8 @@
 
 #include "../../Effect/Effect.h"
 
+#include "../../AORI/AORIManager.h"
+
 const int PHASE_NUM = 3;	//ÉQÅ[ÉWÇÃêî
 
 const char _Path[256] = {
@@ -41,6 +43,8 @@ private:
 	CInput  input;
 
 	EffectManager Effectmanager;
+
+	AORIManager aoriManager;
 
 	void ReadStageNumber();
 	void SaveStageNumber();

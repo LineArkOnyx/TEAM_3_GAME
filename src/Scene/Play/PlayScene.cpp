@@ -17,6 +17,8 @@ void PlayScene::Init()
 		CSoundManager::GetInstance()->SetVolume(SOUNDID_BGM_PLAY, 1.0f);
 	}
 
+	aoriManager.Init();
+
 	nextNum = 0;
 }
 void PlayScene::Load()
@@ -44,6 +46,8 @@ void PlayScene::Load()
 	player.Load();
 
 	Effectmanager.Load();
+
+	aoriManager.Load();
 }
 int PlayScene::Step()
 {
@@ -73,12 +77,16 @@ int PlayScene::Step()
 		}
 	}
 	
+	aoriManager.Step();
+
 	return Sequence;
 }
 void PlayScene::Exit()
 {
 	CSoundManager::GetInstance()->Exit();
 	Effectmanager.Fin();
+
+	aoriManager.Exit();
 }
 
 void PlayScene::ReadStageNumber(){
@@ -168,6 +176,8 @@ void PlayScene::Draw()
 		DrawFormatString(0, 0, GetColor(255, 255, 0), "%d", num);
 
 		Effectmanager.Draw();
+
+		aoriManager.Draw();
 		break;
 
 	case EXIT_SEQUENCE:

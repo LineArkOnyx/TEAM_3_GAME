@@ -64,6 +64,9 @@
     <Filter Include="ソース ファイル\Font">
       <UniqueIdentifier>{5aa3db5b-2b9d-4b0f-b5bd-c5fc810ff77f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\AORI">
+      <UniqueIdentifier>{139ef699-f4b0-4ee7-a37e-c82eff4480d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -117,6 +120,12 @@
     <ClCompile Include="src\Font\Font.cpp">
       <Filter>ソース ファイル\Font</Filter>
     </ClCompile>
+    <ClCompile Include="src\AORI\AORI.cpp">
+      <Filter>ソース ファイル\AORI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AORI\AORIManager.cpp">
+      <Filter>ソース ファイル\AORI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Scene\SceneManager.h">
@@ -166,6 +175,12 @@
     </ClInclude>
     <ClInclude Include="src\Font\Font.h">
       <Filter>ソース ファイル\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AORI\AORI.h">
+      <Filter>ソース ファイル\AORI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AORI\AORIManager.h">
+      <Filter>ソース ファイル\AORI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
