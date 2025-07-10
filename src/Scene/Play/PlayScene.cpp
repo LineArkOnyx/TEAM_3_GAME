@@ -33,10 +33,12 @@ void PlayScene::Load()
 		maps.CreateTrap(UP_MOVE, 300, 720 - 64, 64, 64, 64, 750, 1000, 64, -1, -64, 7.6);
 		break;
 	case 1:
-		maps.CreateTrap(LEFT_MOVE, 200, 160, 64, 64, 9 * 32, 9 * 32, 64, 32, 160, -1, 7.6);
+		maps.CreatePITFALL(576, 7 * 32 - 16, 64, 32, 21, 9, 27, 23);
+		maps.CreateTrap(RIGHT_MOVE, 27 * 32, 7 * 32, 64, 256, 27 * 32, 10 * 32, 96, 32, 1280, -1, 7.6); 
 		break;
 	case 2:
-
+		maps.CreatePITFALL(5 * 32, 11 * 32, 128, 32, 9, 8, 12, 9);
+		maps.CreatePITFALL(5 * 32, 11 * 32, 128, 32, 5, 13, 13, 14);
 		break;
 	default:
 

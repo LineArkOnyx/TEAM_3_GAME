@@ -78,6 +78,10 @@ void Player::Init(int num)
 		m_fXPos = 128.0f;
 		m_fYPos = 8 * 32;
 		break;
+	case 2:
+		m_fXPos = 64.0f;
+		m_fYPos = 8 * 32;
+		break;
 	default:
 		break;
 	}
