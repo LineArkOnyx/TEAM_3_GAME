@@ -7,18 +7,12 @@ enum tagSoundID {
 		SOUNDID_BGM_PLAY,			// ゲーム中のBGM
 		
 		// SE
-		SOUNDID_SE_DECISION,		// SE 決定
-		SOUNDID_SE_CANCEL,			// SE キャンセル
-		SOUNDID_SE_WALK,			// SE 歩き
-		SOUNDID_SE_JUMP,			// SE ジャンプ
-		SOUNDID_SE_GOAL,			// SE ゴール
-		SOUNDID_SE_HIT,				// SE 被弾(タヒ)
-		SOUNDID_SE_AORI_1,			// SE 煽り１
-		SOUNDID_SE_AORI_2,			// SE 煽り２
-		SOUNDID_SE_SCENECHANGE,		// SE シーン切り替え
 		SOUNDID_SE_DEATH,			// SE 死亡
 		SOUNDID_SE_DEVIL_JUMP,		// SE レベルデビルジャンプ
-		//SOUNDID_SE_GOAL,			// SE ゴール
+		SOUNDID_SE_GOAL,			// SE ゴール
+		SOUNDID_SE_SCENECHANGE,		// SE シーン切り替え
+		SOUNDID_SE_AORI_1,			// SE 煽り１
+		SOUNDID_SE_AORI_2,			// SE 煽り２
 
 		SOUNDID_NUM
 	};

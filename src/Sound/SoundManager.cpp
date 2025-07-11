@@ -71,12 +71,6 @@ bool CSoundManager::LoadAllData()
 	{
 		"data/Sound/BGM/TitleBGM.mp3",
 		"data/Sound/BGM/PlayScene-BGM-125.mp3",
-		"data/Sound/SE/Decision.mp3",
-		"data/Sound/SE/Cancel.mp3",
-		"data/Sound/SE/Whip.mp3",
-		"data/Sound/SE/Magic.mp3",
-		"data/Sound/SE/Hit.mp3",
-		"data/Sound/SE/Recover.mp3",
 		"data/Sound/SE/Death_SE.mp3",
 		"data/Sound/SE/Devil_Jump_SE.mp3",
 		"data/Sound/SE/Goal_SE.mp3"
@@ -148,7 +142,7 @@ void CSoundManager::SetVolume(tagSoundID iID, float fVol)
 int CSoundManager::Play(tagSoundID iID, int iType, bool isStart)
 {
 	CSoundManager::SetVolume(iID, 0.4f);
-	CSoundManager::SetVolume(SOUNDID_SE_HIT, 0.3f);
+	//CSoundManager::SetVolume(SOUNDID_SE_HIT, 0.3f);
 	return PlaySoundMem(m_iHndl[iID], iType, isStart);
 }
 
