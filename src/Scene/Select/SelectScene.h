@@ -8,9 +8,13 @@
 #define	SCREEN_SIZE_Y	720	// Y方向の画面サイズを指定(デフォルト)
 
 #define STAGE_MAX	(5)
+#define ANIME_NUM_PLAYER (4)
+#define ANIME_WALK_LOOP (2)
 
 #define PLAYER_HANDLE ("data/Select/kari.png")
-#define ISLAND_HANDLE ("data/Select/island.png")
+#define PLAYER_DIV_HANDLE ("data/Player/Player_debi_original.png")
+#define PLAYER_SHADOW_HANDLE ("data/Select/Shadow.png")
+#define ISLAND_HANDLE ("data/Select/溶けたかぼちゃプリン.png")
 
 const char Path[256] = {
 	"data/File/data.bin",
@@ -40,6 +44,12 @@ private:
 		int AfterStage;
 	};
 
+	struct ANIME_DATA
+	{
+		int AnimeFrame;
+
+	};
+
 	const STAGE_DATA m_eStageData[STAGE_MAX] =
 	{
 
@@ -49,6 +59,14 @@ private:
 		{700.0f,400.0f,3,2,4},
 		{900.0f,100.0f,4,3,-1},
 
+	};
+
+	const ANIME_DATA m_ePlayerData[ANIME_NUM_PLAYER] =
+	{
+		10,
+		12,
+		5,
+		1,
 	};
 
 	SEQUENCE_ID SequenceID = INIT_SEQUENCE;
@@ -64,16 +82,27 @@ private:
 	int CurrentStage;
 	int NextStage;
 	int DecisionStage;
+	int kasoku;
 
 	bool m_IsMove;
+	bool m_Iskasoku;
 
+	bool muki;
 	bool m_IsOverX;
 	bool m_IsOverY;
 
 	int StageIconHandle;
+	int PlayerIconDivHandle[ANIME_NUM_PLAYER];
+	int PlayerShadowHandle[ANIME_NUM_PLAYER];
+
+	int Current_Anime;
+	int AnimeFrame;
 	int PlayerIconHandle;
+	
 
 	void SaveStageNumber();
+
+	void AnimationPlayer();
 
 public:
 

@@ -1,7 +1,11 @@
 #include "SelectScene.h"
 
-#define PLAYER_SPEED (10)
-#define GRAY_COLOR  (125,125,125)
+#define PLAYER_SPEED (5)
+#define KASOUKU_PLAYER (3)
+//#define LINE_COLOR  GetColor(200,200,200)
+#define LINE_COLOR  GetColor(255,100,0)
+//#define BACK_COLOR  GetColor(55,55,255)
+#define BACK_COLOR  GetColor(55,0,55)
 
 void SelectScene::Init()
 {
@@ -11,10 +15,14 @@ void SelectScene::Init()
 	CurrentStage = 0;
 	DecisionStage = 0;
 	NextStage = 0;
+	Current_Anime = 0;
+	AnimeFrame = 0;
+	kasoku = 0;
 	m_IsOverX = false;
 	m_IsOverY = false;
 	m_IsMove = false;
-
+	m_Iskasoku = false;
+	muki = true;
 
 }
 void SelectScene::Load()
@@ -25,8 +33,19 @@ void SelectScene::Load()
 
 	NextStage = -1;
 
+	LoadDivGraph(PLAYER_DIV_HANDLE, ANIME_NUM_PLAYER, 
+				 2, 2, 32, 32, PlayerIconDivHandle);
+
+	LoadDivGraph(PLAYER_SHADOW_HANDLE, ANIME_NUM_PLAYER, 
+				 2, 2, 32, 32, PlayerShadowHandle);
+
 	StageIconHandle = LoadGraph(ISLAND_HANDLE);
 	PlayerIconHandle = LoadGraph(PLAYER_HANDLE);
+
+
+	/*for (int i = 0; i < ANIME_NUM_PLAYER; i++)
+		GraphFilter(PlayerShadowHandle[i], DX_GRAPH_FILTER_TWO_COLOR,
+					0, GetColor(0, 0, 128), 1, GetColor(255, 255, 0), 255);*/
 
 }
 int SelectScene::Step()
@@ -38,8 +57,21 @@ int SelectScene::Step()
 	kakudo = atan2f((m_eStageData[NextStage].x - m_eStageData[CurrentStage].x),
 		(m_eStageData[NextStage].y - m_eStageData[CurrentStage].y));
 
+	if (CInput::IsKeyKeep(KEY_INPUT_LSHIFT))
+	{
+		m_Iskasoku = true;
+	}
+	else
+	{
+		m_Iskasoku = false;
+	}
 
-	if (CInput::IsKeyPush(KEY_INPUT_RIGHT) && !m_IsMove)
+	if (!m_Iskasoku) kasoku = 0;
+	else kasoku = KASOUKU_PLAYER;
+
+
+	if (CInput::IsKeyPush(KEY_INPUT_RIGHT) && !m_IsMove ||
+		CInput::IsKeyPush(KEY_INPUT_D) && !m_IsMove)
 	{
 		if (m_eStageData[CurrentStage].AfterStage != -1)
 		{
@@ -47,13 +79,21 @@ int SelectScene::Step()
 			m_IsMove = true;
 
 			if (m_eStageData[CurrentStage].x < m_eStageData[CurrentStage + 1].x)
+			{
 				m_IsOverX = true;
-			else m_IsOverX = false;
+				muki = true;
+			}
+			else 
+			{
+				m_IsOverX = false;
+				muki = false;
+			}
 		}
 		else;
 
 	}
-	if (CInput::IsKeyPush(KEY_INPUT_LEFT) && !m_IsMove)
+	if (CInput::IsKeyPush(KEY_INPUT_LEFT) && !m_IsMove ||
+		CInput::IsKeyPush(KEY_INPUT_A) && !m_IsMove)
 	{
 		if (m_eStageData[CurrentStage].BeforeStage != -1)
 		{
@@ -61,16 +101,23 @@ int SelectScene::Step()
 			m_IsMove = true;
 
 			if (m_eStageData[CurrentStage].x < m_eStageData[CurrentStage - 1].x)
+			{
 				m_IsOverX = true;
-			else m_IsOverX = false;
+				muki = true;
+			}
+			else
+			{
+				m_IsOverX = false;
+				muki = false;
+			}
 		}
 		else;
 	}
 
 	if (m_IsMove)
 	{
-		PlayerPosX += sinf(kakudo) * PLAYER_SPEED;
-		PlayerPosY += cosf(kakudo) * PLAYER_SPEED;
+		PlayerPosX += sinf(kakudo) * (PLAYER_SPEED + kasoku);
+		PlayerPosY += cosf(kakudo) * (PLAYER_SPEED + kasoku);
 
 		if (m_IsOverX)
 		{
@@ -176,14 +223,14 @@ int SelectScene::Loop()
 void SelectScene::Draw()
 {
 
-	DrawBox(0, 0, 1280, 720, GetColor(50, 70, 225), true);
+	DrawBox(0, 0, 1280, 720, BACK_COLOR, true);
 
 	for (int Index = 0; Index < STAGE_MAX; Index++)
 	{
 		if (Index < STAGE_MAX - 1)
 		{
 			DrawLineAA(m_eStageData[Index].x, m_eStageData[Index].y,
-				m_eStageData[Index + 1].x, m_eStageData[Index + 1].y, GRAY_COLOR);    // ü‚ð•`‰æ
+				m_eStageData[Index + 1].x, m_eStageData[Index + 1].y, LINE_COLOR);    // ü‚ð•`‰æ
 		}
 
 		DrawRotaGraph((int)m_eStageData[Index].x, (int)m_eStageData[Index].y, 1.0f, 0.0f, StageIconHandle, true);
@@ -191,7 +238,7 @@ void SelectScene::Draw()
 
 	}
 
-	DrawRotaGraph((int)PlayerPosX, (int)PlayerPosY, 1.0f, 0.0f, PlayerIconHandle, true);
+	AnimationPlayer();
 
 	/*switch (SequenceID)
 	{
@@ -214,4 +261,51 @@ void SelectScene::Draw()
 	default:
 		break;
 	}*/
+}
+
+void SelectScene::AnimationPlayer()
+{
+	if (!m_IsMove)
+	{
+		AnimeFrame = 0;
+		Current_Anime = 0;
+
+		/*DrawRotaGraph((int)PlayerPosX, (int)PlayerPosY, 1.0f, 0.0f,
+					  PlayerIconDivHandle[Current_Anime], true,!muki);*/
+	}
+
+	else
+	{
+		/*DrawRotaGraph((int)PlayerPosX, (int)PlayerPosY, 1.0f, 0.0f,
+					  PlayerIconDivHandle[Current_Anime],true,!muki);*/
+
+		if (AnimeFrame < m_ePlayerData[Current_Anime].AnimeFrame)
+		{
+			if (!kasoku) AnimeFrame++;
+			else AnimeFrame += 2;
+		}
+		else
+		{
+			if (Current_Anime < ANIME_WALK_LOOP)
+			{
+				Current_Anime++;
+			}
+
+			else Current_Anime = 0;
+
+			AnimeFrame = 0;
+		}
+
+		
+	
+	}
+
+
+	DrawRotaGraph((int)PlayerPosX, (int)PlayerPosY, 1.2f, 0.0f,
+		PlayerShadowHandle[Current_Anime], true, !muki);
+
+
+	DrawRotaGraph((int)PlayerPosX, (int)PlayerPosY, 1.0f, 0.0f,
+		PlayerIconDivHandle[Current_Anime], true, !muki);
+
 }
