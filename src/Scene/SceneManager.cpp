@@ -18,6 +18,7 @@ void SceneManager::Loop()
 	//ここはひとまずswitch文を利用する
 	switch (m_eSceneID)
 	{
+
 	case SceneManager::SCENE_TITLE:
 		//タイトルのエンドシーンまで来たら
 		if (cTitle.Loop() != 0) 

@@ -12,8 +12,8 @@ void TitleScene::Init()
 	coll.Init();
 	Effectmanager.Init();
 
-	m_fStartPosX = 1050.0f;
-	m_fStartPosY = 400.0f;
+	m_fStartPosX = 1100.0f;
+	m_fStartPosY = 610.0f;
 
 	m_iStartHndl = -1;
 	TitleHndl = -1;
@@ -71,9 +71,11 @@ int TitleScene::Step()
 
 	int Sequence = 0;
 	buttonReach = false;
+	
+	// 例：Y座標が400を超えたら、タイトルが落ちてくる
+	const float TITLE_FALL_TRIGGER_Y = 400.0f;
 
-	// タイトル文字の下を通過したら落下開始
-	if (!m_isTitleFalling && player.GetYPos() + player.GetHeight() > m_titleY + m_titleHeight) {
+	if (!m_isTitleFalling && player.GetYPos() > TITLE_FALL_TRIGGER_Y) {
 		m_isTitleFalling = true;
 	}
 
@@ -81,24 +83,20 @@ int TitleScene::Step()
 	if (m_isTitleFalling) {
 		m_titleY += 5.0f;  // 落下速度
 
-		// 画面下まで落ちたらリセット
-		if (m_titleY > 720) {
-			m_titleY = 0.0f;
-			m_isTitleFalling = false;
-		}
+		
 	}
 
 	// タイトル文字とプレイヤーの当たり判定（落下中のみ）
 	if (m_isTitleFalling) {
 		if (IsHitRect(m_titleX, m_titleY, m_titleWidth, m_titleHeight,
 			player.GetXPos(), player.GetYPos(), player.GetWidth(), player.GetHeight())) {
-			player.SetAliveFlg(false);  // プレイヤー死亡フラグセット
+			return 1;
 		}
 	}
 
 	// プレイヤーが死んだらシーン切替
 	if (!player.GetAlliveFlag()) {
-		return 1;
+		player.SetAliveFlg(false);  // プレイヤー死亡フラグセット
 	}
 
 	// スタートボタン判定

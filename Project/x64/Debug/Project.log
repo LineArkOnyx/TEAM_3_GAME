@@ -1,0 +1,13 @@
+﻿  TitleScene.cpp
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Title/TitleScene.cpp' をコンパイルしています)
+  
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(92,75): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(92,55): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(92,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(92,18): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(91,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(91,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(181,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+D:\Users\2309434\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(181,14): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  Project.vcxproj -> D:\Users\2309434\Desktop\TEAM_3_GAME\x64\Debug\Project.exe
