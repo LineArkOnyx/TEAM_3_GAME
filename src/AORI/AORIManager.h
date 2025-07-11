@@ -25,4 +25,6 @@ public:
 	void Draw();
 
 	void RandomRequest();
+
+	AORI &GetAORI(int aori) { return Aori[aori]; }
 };

@@ -61,4 +61,7 @@ public:
 
 	void Request(int PosY);
 	bool GetIsActive() { return IsActive; }
+
+	float GetPosX() { return m_PosX; }
+	float GetPosY() { return m_PosY; }
 };
