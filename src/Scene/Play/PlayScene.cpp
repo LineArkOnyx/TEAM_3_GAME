@@ -7,6 +7,7 @@ void PlayScene::Init()
 	coll.Init();
 	maps.Init();
 
+
 	player.Init(num);
 
 	Effectmanager.Init();
@@ -56,6 +57,7 @@ int PlayScene::Step()
 	int Sequence = 0;
 
 	player.Step();
+
 	coll.PlayerToMap(player, maps);
 
 	maps.Step();

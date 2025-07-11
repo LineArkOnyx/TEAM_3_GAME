@@ -1,5 +1,5 @@
 #include "LevelDevilPlayer.h"
-
+#include "../../Sound/SoundManager.h"
 
 //íËã`
 //â°ïù
@@ -312,5 +312,11 @@ void Player::Death()
 	if (m_fNextXPos <= 0)
 	{
 		m_bIsAlive = false;
+	}
+
+	if (m_bIsAlive == false)
+	{
+		CSoundManager::GetInstance()->Play(SOUNDID_SE_DEATH);
+		CSoundManager::GetInstance()->SetVolume(SOUNDID_SE_DEATH, 1.0f);
 	}
 }
