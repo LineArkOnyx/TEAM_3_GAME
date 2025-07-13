@@ -15,7 +15,7 @@ void PlayScene::Init()
 	if (!CSoundManager::GetInstance()->IsPlay(SOUNDID_BGM_PLAY)) {
 		CSoundManager::GetInstance()->LoadAllData();
 		CSoundManager::GetInstance()->Play(SOUNDID_BGM_PLAY);
-		CSoundManager::GetInstance()->SetVolume(SOUNDID_BGM_PLAY, 1.0f);
+		CSoundManager::GetInstance()->SetVolume(SOUNDID_BGM_PLAY, 0.5f);
 	}
 
 	aoriManager.Init();
@@ -84,6 +84,8 @@ int PlayScene::Step()
 	}
 
 	if (coll.goal) {
+		CSoundManager::GetInstance()->Play(SOUNDID_SE_GOAL);
+		CSoundManager::GetInstance()->SetVolume(SOUNDID_SE_GOAL, 0.6f);
 		SequenceID = INIT_SEQUENCE;
 		num = num + 1;
 		SaveStageNumber();

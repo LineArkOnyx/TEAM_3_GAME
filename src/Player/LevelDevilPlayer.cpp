@@ -17,7 +17,7 @@ constexpr float PLAYER_GRAVITY = 0.6f;
 constexpr float PLAYER_MAX_GRAVITY = 5.5f;
 
 //プレイヤーの画像パス
-constexpr char PLAYER_IMG_PATH[] = { "data/Player/Player_debi.png" };
+constexpr char PLAYER_IMG_PATH[] = { "data/Player/Player_debi_original.png" };
 
 //読み込み関連
 constexpr int IMG_ALL_NUM = 4;
@@ -194,6 +194,12 @@ void Player::Jump()
 		m_fYSpeed = -PLAYER_JUMPPAD_JUMPSPEED;
 		m_eState = PLAYER_STATE_JUMP;
 	}
+
+	if (m_bIsJump && !CSoundManager::GetInstance()->IsPlay(SOUNDID_SE_DEVIL_JUMP))
+	{
+		CSoundManager::GetInstance()->Play(SOUNDID_SE_DEVIL_JUMP);
+		CSoundManager::GetInstance()->SetVolume(SOUNDID_SE_DEVIL_JUMP, 0.6);
+	}
 }
 
 void Player::Animation()
@@ -321,6 +327,6 @@ void Player::Death()
 	if (m_bIsAlive == false)
 	{
 		CSoundManager::GetInstance()->Play(SOUNDID_SE_DEATH);
-		CSoundManager::GetInstance()->SetVolume(SOUNDID_SE_DEATH, 1.0f);
+		CSoundManager::GetInstance()->SetVolume(SOUNDID_SE_DEATH, 0.6f);
 	}
 }
