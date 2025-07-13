@@ -20,7 +20,7 @@ void TitleScene::Init()
 
 	buttonReach = false;
 
-	// トランジション初期化（上下から出て中央で重なり、Uターンで消える）
+	// トランジション初期化
 	Move::Init();
 	isTransitionFinished = false;
 
@@ -30,6 +30,10 @@ void TitleScene::Init()
 	// タイトル文字位置リセット
 	m_titleY = 0.0f;
 	m_isTitleFalling = false;
+
+	m_isTitleFalling = false;
+	m_titleTrapUsed = false;
+	m_titleTrapActive = false;
 }
 
 void TitleScene::Load()
@@ -38,6 +42,11 @@ void TitleScene::Load()
 		m_iStartHndl = LoadGraph(TITLE_START_PATH);
 		TitleHndl = LoadGraph("data/background.png");
 	}
+
+
+	// ★ タイトルBGMをループ再生
+	CSoundManager::GetInstance()->Play(SOUNDID_BGM_TITLE, DX_PLAYTYPE_LOOP);
+
 	maps.Load(STAGE_TITLE);
 	player.Load();
 	Font::FontHandleLoad();
@@ -56,55 +65,82 @@ int TitleScene::Step()
 
 	GetMousePoint(&MousePosX, &MousePosY);
 
-	// 画面外判定（プレイヤーが画面外に落ちたらシーン切替）
+	// プレイヤーの画面外判定（シーン切替）
 	float px = player.GetXPos();
 	float py = player.GetYPos();
 
 	if (px < 0 || px > 1280 || py < 0 || py > 720 + player.GetHeight()) {
-		return 1;  // シーン切替フラグ
+		return 1;  // シーン切替
 	}
 
-	// プレイヤー操作・当たり判定
+	// プレイヤー操作・当たり判定処理
 	player.Step();
 	coll.PlayerToMap(player, maps);
 	player.Update();
 
 	int Sequence = 0;
 	buttonReach = false;
-	
-	// 例：Y座標が400を超えたら、タイトルが落ちてくる
-	const float TITLE_FALL_TRIGGER_Y = 400.0f;
 
-	if (!m_isTitleFalling && player.GetYPos() > TITLE_FALL_TRIGGER_Y) {
-		m_isTitleFalling = true;
+	const float TITLE_FALL_TRIGGER_X = 400.0f;
+
+	if (!m_isTitleFalling && !m_titleTrapUsed && player.GetXPos() > TITLE_FALL_TRIGGER_X) {
+		m_isTitleFalling = true;   // 罠が落ち始める
+		m_titleTrapUsed = true;    // 罠は一度しか使えない
+		m_titleTrapActive = true;  // 罠は現在落下中
 	}
 
-	// タイトル文字が落下中はY座標を下げる
+	// タイトル文字落下処理
 	if (m_isTitleFalling) {
-		m_titleY += 5.0f;  // 落下速度
+		m_titleY += 7.0f;
 
-		
-	}
-
-	// タイトル文字とプレイヤーの当たり判定（落下中のみ）
-	if (m_isTitleFalling) {
 		if (IsHitRect(m_titleX, m_titleY, m_titleWidth, m_titleHeight,
 			player.GetXPos(), player.GetYPos(), player.GetWidth(), player.GetHeight())) {
-			return 1;
+
+			// プレイヤーに当たったら死亡処理など
+			player.Init(0);
+
+			// 罠の落下終了
+			m_isTitleFalling = false;
+			m_titleTrapActive = false;
+			m_titleY = 0.0f;
+
+		}
+		else if (m_titleY > 720) {
+			// 罠が画面外まで落ちたらリセット
+			m_isTitleFalling = false;
+			m_titleTrapActive = false;
+			m_titleY = 0.0f;
 		}
 	}
+	float tx = player.GetXPos();
 
-	// プレイヤーが死んだらシーン切替
-	if (!player.GetAlliveFlag()) {
-		player.SetAliveFlg(false);  // プレイヤー死亡フラグセット
+	// 1100を超えたらシーン遷移
+	if (tx > m_fStartPosX) {
+		return 1;  // シーン切替を示す値（例えば1）
 	}
 
-	// スタートボタン判定
-	if (IsHitSphereAndRectCollision((float)MousePosX, (float)MousePosY, MOUSEPOINT_RADIUS, m_fStartPosX, m_fStartPosY, STARTBUTTON_WIDTH, STARTBUTTON_HEIGHT)) {
+	// プレイヤー死亡時に罠をリセットする処理
+	if (!player.GetAlliveFlag()) {
+		// プレイヤー死亡した瞬間に罠は「未使用状態」に戻す
+		m_titleTrapUsed = false;
+
+		// タイトル落下フラグはもちろん落ちていない状態に
+		m_isTitleFalling = false;
+		m_titleTrapActive = false;
+		m_titleY = 0.0f;
+
+		// プレイヤーを復活させる（既存処理）
+		player.Init(0);
+	}
+
+	// スタートボタンのマウス判定
+	if (IsHitSphereAndRectCollision((float)MousePosX, (float)MousePosY, MOUSEPOINT_RADIUS,
+		m_fStartPosX, m_fStartPosY, STARTBUTTON_WIDTH, STARTBUTTON_HEIGHT)) {
 		buttonReach = true;
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
 			Sequence = 1;
 		}
+
 	}
 
 	return Sequence;
@@ -112,7 +148,7 @@ int TitleScene::Step()
 
 void TitleScene::Exit()
 {
-	// 必要なら終了処理をここに
+	// 終了時処理（必要に応じて）
 }
 
 TitleScene::TitleScene()
@@ -125,7 +161,7 @@ TitleScene::~TitleScene()
 
 int TitleScene::Loop()
 {
-	int SceneCangeFlg = 0; // シーン切替フラグ
+	int SceneCangeFlg = 0;
 
 	switch (SequenceID)
 	{
@@ -173,20 +209,19 @@ void TitleScene::Draw()
 		break;
 
 	case STEP_SEQUENCE:
-		//DrawGraph(0, 0, TitleHndl, true);
 		DrawFormatString(0, 0, GetColor(255, 255, 0), "TITLE_STEP");
 
 		if (isTransitionFinished) {
-			// トランジション後のみ表示
+			// トランジション後にボタン・タイトル表示
 			DrawGraph(m_fStartPosX, m_fStartPosY, m_iStartHndl, true);
-
-			// タイトル文字描画（落下位置に応じてY座標変化）
-			DrawStringToHandle((int)m_titleX, (int)m_titleY, "デビルもどき", GetColor(0, 0, 255), Font::fontHandle[かくめい][_64_6]);
+			DrawStringToHandle((int)m_titleX, (int)m_titleY,
+				"デビルもどき", GetColor(0, 0, 255),
+				Font::fontHandle[かくめい][_64_6]);
+			// ★ ここに「スタート」という青文字を追加
+			DrawString(m_fStartPosX-20, m_fStartPosY - 20, "スタート", GetColor(0, 0, 255));
 		}
 
-		// プレイヤー描画
-		player.Draw();
-
+		player.Draw();  // プレイヤー描画
 		break;
 
 	case EXIT_SEQUENCE:
@@ -194,6 +229,6 @@ void TitleScene::Draw()
 		break;
 	}
 
-	// 最前面にトランジション描画
+	// 最前面にトランジション演出
 	Move::Draw();
 }

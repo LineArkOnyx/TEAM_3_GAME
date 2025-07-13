@@ -1,0 +1,24 @@
+﻿  Main.cpp
+C:\Users\user\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Main.cpp' をコンパイルしています)
+  
+  SceneManager.cpp
+C:\Users\user\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
+  
+  TitleScene.cpp
+C:\Users\user\Desktop\TEAM_3_GAME\src\Input\Input.h(8,14): warning C4091: 'static ': 変数が何も宣言されていないときは、'CInput' の左辺を無視します。
+  (ソース ファイル 'src/Scene/Title/TitleScene.cpp' をコンパイルしています)
+  
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(97,75): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(97,55): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(97,36): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(97,18): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(96,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(96,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(216,28): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(216,14): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(221,45): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\user\Desktop\TEAM_3_GAME\src\Scene\Title\TitleScene.cpp(221,27): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  コードを生成中...
+  Project.vcxproj -> C:\Users\user\Desktop\TEAM_3_GAME\x64\Debug\Project.exe

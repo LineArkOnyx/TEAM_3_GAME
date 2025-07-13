@@ -8,6 +8,7 @@
 #include "../../Player/LevelDevilPlayer.h"
 #include "../../Font/Font.h"
 #include "../../Effect/Effect.h"
+#include "../../Sound/SoundManager.h"
 
 // ★ トランジション演出を使うために追加
 #include "Move.h"
@@ -55,6 +56,10 @@ private:
 	const int m_titleWidth = 300;     // 幅（当たり判定）
 	const int m_titleHeight = 50;     // 高さ（当たり判定）
 	bool m_isTitleFalling = false;    // 落下中フラグ
+
+	bool m_titleTrapUsed = false;   // 罠が発動済みかどうか
+	bool m_titleTrapActive = false; // 現在罠が動いているか（落下中か）
+
 
 	CollisonManager coll;
 	MapChip maps;
