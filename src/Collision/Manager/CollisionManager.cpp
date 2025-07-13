@@ -214,10 +214,10 @@ void CollisonManager::PlayerToMap(Player& player, MapChip& map) {
 void CollisonManager::PlayerToAORI(Player& player, AORIManager& aori){
 	for (int i = 0; i < PATURN; i++) {
 
-		if (IsHitRect(player.GetXPos(), player.GetYPos(), player.GetWidth(), player.GetHeight(), aori.GetAORI(i).GetPosX(), aori.GetAORI(i).GetPosY(), std::string(aori.GetAORI(i).Comment[i]).size(), 32)) {
+		if (IsHitRect(player.GetXPos(), player.GetYPos(), player.GetWidth(), player.GetHeight(), aori.GetAORI(i).GetPosX(), aori.GetAORI(i).GetPosY(), std::string(aori.GetAORI(i).Comment[i]).size(), 16)) {
 			player.SetAliveFlg(false);
 		}
 
-		DrawBox(aori.GetAORI(i).GetPosX(), aori.GetAORI(i).GetPosY(), aori.GetAORI(i).GetPosX() + std::string(aori.GetAORI(i).Comment[i]).size(), aori.GetAORI(i).GetPosY() + 32, GetColor(255, 255, 255), false);
+		DrawBox(aori.GetAORI(i).GetPosX(), aori.GetAORI(i).GetPosY(), aori.GetAORI(i).GetPosX() + std::string(aori.GetAORI(i).Comment[i]).size(), aori.GetAORI(i).GetPosY() + 16, GetColor(255, 255, 255), false);
 	}
 }

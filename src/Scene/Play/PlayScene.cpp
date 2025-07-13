@@ -43,6 +43,12 @@ void PlayScene::Load()
 		maps.CreateTrap(RIGHT_MOVE, 27 * 32, 7 * 32, 64, 32, 23 * 32, 9 * 32, 54, 32, 1280, -1, 1.0);
 		maps.CreateTrap(UP_MOVE, 27 * 32, 7 * 32, 64, 32, 30 * 32, 9 * 32, 32, 32, 1280, -1, 7.5);
 		break;
+	case 3:
+		maps.CreateTrap(UP_MOVE, 10 * 32, 12 * 32, 64, 32, 10 * 32, 13 * 32, 64, 32, 1280, -1, 2.5);
+		maps.CreateTrap(RIGHT_MOVE, 10 * 32, 12 * 32, 64, 32, -6 * 32, 13 * 32, 32, 32, 640, -1, 1.0);
+		maps.CreateTrap(UP_MOVE, 17 * 32, 12 * 32, 64, 32, 24 * 32, 30 * 32, 64, 32, 1280, -1, 3.0);
+		maps.CreatePITFALL(10 * 32, 6 * 32, 64, 32, 12, 3, 15, 4);
+		break;
 	default:
 
 		break;
@@ -61,6 +67,10 @@ int PlayScene::Step()
 	player.Step();
 
 	coll.PlayerToMap(player, maps);
+
+	if (num == 3) {
+		coll.PlayerToAORI(player, aoriManager);
+	}
 
 	maps.Step();
 

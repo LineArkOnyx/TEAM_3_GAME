@@ -52,7 +52,7 @@ void AORIManager::RandomRequest() {
 		
 
 		if (!Aori[i].GetIsActive()) {
-			Aori[i].Request(GetRand(720));
+			Aori[i].Request(GetRand(720 - 64));
 			break;
 		}
 
