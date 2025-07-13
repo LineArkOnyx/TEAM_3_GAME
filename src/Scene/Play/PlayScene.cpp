@@ -40,6 +40,8 @@ void PlayScene::Load()
 	case 2:
 		maps.CreatePITFALL(5 * 32, 11 * 32, 128, 32, 9, 8, 12, 9);
 		maps.CreatePITFALL(5 * 32, 11 * 32, 128, 32, 5, 13, 13, 14);
+		maps.CreateTrap(RIGHT_MOVE, 27 * 32, 7 * 32, 64, 32, 23 * 32, 9 * 32, 54, 32, 1280, -1, 1.0);
+		maps.CreateTrap(UP_MOVE, 27 * 32, 7 * 32, 64, 32, 30 * 32, 9 * 32, 32, 32, 1280, -1, 7.5);
 		break;
 	default:
 
