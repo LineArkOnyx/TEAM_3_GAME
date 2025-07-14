@@ -60,6 +60,7 @@ private:
 	bool m_titleTrapUsed = false;   // γ©‚ª”­“®Ο‚έ‚©‚Η‚¤‚©
 	bool m_titleTrapActive = false; // »έγ©‚ª“®‚Ά‚Δ‚Ά‚ι‚©i—‰Ί’†‚©j
 
+	bool m_bPlayedDeathSE = false;
 
 	CollisonManager coll;
 	MapChip maps;

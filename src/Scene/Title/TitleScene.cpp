@@ -43,8 +43,13 @@ void TitleScene::Load()
 		TitleHndl = LoadGraph("data/background.png");
 	}
 
+	// サウンドデータを読み込む（成功チェックも入れると良い）
+	bool loadSoundSuccess = CSoundManager::GetInstance()->LoadAllData();
+	if (!loadSoundSuccess) {
+;
+	}
 
-	// ★ タイトルBGMをループ再生
+	// タイトルBGMをループ再生
 	CSoundManager::GetInstance()->Play(SOUNDID_BGM_TITLE, DX_PLAYTYPE_LOOP);
 
 	maps.Load(STAGE_TITLE);
@@ -119,8 +124,13 @@ int TitleScene::Step()
 		return 1;  // シーン切替を示す値（例えば1）
 	}
 
-	// プレイヤー死亡時に罠をリセットする処理
 	if (!player.GetAlliveFlag()) {
+		if (!m_bPlayedDeathSE) {
+			CSoundManager::GetInstance()->Play(SOUNDID_SE_DEATH);
+			CSoundManager::GetInstance()->SetVolume(SOUNDID_SE_DEATH, 0.6f);
+			m_bPlayedDeathSE = true;
+		}
+
 		// プレイヤー死亡した瞬間に罠は「未使用状態」に戻す
 		m_titleTrapUsed = false;
 
@@ -132,6 +142,11 @@ int TitleScene::Step()
 		// プレイヤーを復活させる（既存処理）
 		player.Init(0);
 	}
+	else {
+		// プレイヤー生存中はフラグを戻しておく（次回死亡SE再生のため）
+		m_bPlayedDeathSE = false;
+	}
+
 
 	// スタートボタンのマウス判定
 	if (IsHitSphereAndRectCollision((float)MousePosX, (float)MousePosY, MOUSEPOINT_RADIUS,
@@ -148,7 +163,7 @@ int TitleScene::Step()
 
 void TitleScene::Exit()
 {
-	// 終了時処理（必要に応じて）
+	CSoundManager::GetInstance()->Stop(SOUNDID_BGM_TITLE);
 }
 
 TitleScene::TitleScene()
